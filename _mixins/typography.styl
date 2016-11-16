@@ -1,0 +1,39 @@
+
+// ----------------------------------------------------------------------------
+
+standard-type-settings()
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-rendering: optimizeLegibility
+
+  letter-spacing: normal
+  word-spacing: normal
+
+
+// ----------------------------------------------------------------------------
+
+web-font($name = 'Noto Sans', $variants = '400 400italic 700 700italic')
+  $family = unquote(replace(' ', '+', $name))
+
+  if $variants is not false
+    if $variants is a 'string'
+      $variants = split(' ', $variants)
+
+    $family += ':' + join(',', $variants)
+
+  return 'https://fonts.googleapis.com/css?family=' + $family
+
+// ----------------------------------------------------------------------------
+
+syntax($colour, $styles...)
+  if length($colour) > 1
+    $styles = slice($colour, 1)
+    $colour = $colour[0]
+
+  $importance = arguments[length(arguments) - 1] == !important ? !important : unquote('')
+
+  color: $colour $importance
+
+  font-weight: bold $importance if bold in $styles
+  font-style: italic $importance if italic in $styles
+  text-decoration: underline $importance if underline in $styles

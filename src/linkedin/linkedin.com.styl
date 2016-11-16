@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css?family=Noto\+Sans:400,400italic,700,700italic);
+
+// ----------------------------------------------------------------------------
+
+*
+  font-family 'Noto Sans', sans-serif
+
+body
+  font-size 14pt
+  line-height 1.44em
+  color black
+
+a[href*=profile][href*=view]
+  color #07f !important
+
+  &:visited
+    color #c50 !important
+
+pre, code, tt, kbd
+  font-family Consolas, Monaco, monospace !important
+  font-size inherit
+  line-height 1.44em !important
+
+pre
+  white-space pre-wrap
+  word-wrap break-word
+
+img.browse-map-photo
+  image-rendering optimizeQuality
+
+.insights-browse-map
+.insights-ctx-profiles
+  li
+    .browse-map-photo
+    .ctx-profile-photo
+      &
+      img
+        width 100px
+        height 100px
+
+.background-section
+.background-section-drag-proxy
+  .education-associated
+  .projects-associated
+  .patents-associated
+    img
+      width 60px !important
+      height 60px !important

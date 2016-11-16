@@ -1,0 +1,124 @@
+// stylus -w -u nib --sourcemap-inline stack-overflow.styl
+// stylus -U -u nib -o css --sourcemap-inline --hoist-atrules stack-overflow.styl
+
+// ----------------------------------------------------------------------------
+
+$text-font = Leto
+$text-size = 11pt
+$text-color = #111
+$background-color = #f2f3f4
+
+// ----------------------------------------------------------------------------
+
+body
+  standard-type-settings()
+
+  font-family Leto, 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-size $text-size
+  line-height $line-height
+
+@import url("https://fonts.googleapis.com/css?family=Leto:400,700italic,400italic,700")
+// @import url("https://fonts.googleapis.com/css?family=Noto\+Sans:400,700italic,400italic,700")
+
+body
+tr.comment > td
+  color $text-colour !important
+
+tr.comment > td
+  font-size smaller
+  // line-height 1.44em !important
+
+// ----------------------------------------------------------------------------
+
+div[itemtype="http://schema.org/Question"]
+  display flex
+  flex-flow row wrap
+
+.question-header
+#feed-link
+  flex 0 0 100%
+
+#mainbar
+  flex 2 1 auto
+
+#answers
+  flex 1 0 300px
+
+.post-text
+  width auto
+
+.comments
+  width 50vw
+  border-top 1px dotted #888 !important
+  padding-top 5px !important
+
+.comment-text
+  border-bottom 1px dotted #aaa !important
+  padding 5px 10px !important
+
+.comment-actions
+  padding-top 5px !important
+
+// ----------------------------------------------------------------------------
+
+@import "./_syntax-dark"
+// @import "./_syntax-solarized"
+
+// ----------------------------------------------------------------------------
+
+.post-text
+.wmd-preview
+  font-size $text-size
+  line-height $line-height
+  color $text-colour
+
+  pre
+    max-height 100%
+    margin 1em 0
+    padding 0.25em 0.5em
+    box-shadow 0.3em 0.4em 0.2em 0 #bbb
+
+    &
+    code
+      background-color $code-background
+
+    code
+      &
+      .pln
+        color $code-text
+
+  code
+    // font-size smaller
+    word-spacing -0.1em
+    letter-spacing -0.01em // 0.6px
+    white-space pre-wrap
+
+
+    // &
+    // span
+    // .pln
+    //   color $code-text
+
+// ----------------------------------------------------------------------------
+
+  .com
+    syntax $code-comment
+
+  .kwd
+    syntax $code-keyword
+
+  .pun
+    syntax $code-operator
+
+  .str
+  .lit
+    syntax $code-string
+
+  .tag
+    syntax $code-tag
+
+  .atn
+    syntax $code-attribute
+
+  .atv
+    syntax $code-value

@@ -1,0 +1,124 @@
+
+// ----------------------------------------------------------------------------
+
+#container
+  #content
+    padding-left 0 !important
+
+.CodeMirror
+  font-family Consolas
+  font-size 12pt
+  line-height 1.4em
+  display inline-block !important
+  vertical-align top !important
+  margin 0 !important
+  float none !important
+  width 48% !important
+  &:first-of-type
+    margin-right 1em !important
+
+.CodeMirror-scroll,
+.CodeMirror-scroll > div
+  width 100% !important
+  vertical-align top !important
+
+.CodeMirror-lines
+  color #f7f7f7
+  background-color #222
+  padding 8px 12px !important
+
+div
+  &.CodeMirror-selected
+    background #323232
+
+.CodeMirror-line::selection,
+.CodeMirror-line > span::selection,
+.CodeMirror-line > span > span::selection
+  background rgba(50, 50, 50, 0.99)
+
+.CodeMirror-gutters
+  background-color #222
+  border-right 1px solid #aaa
+
+.CodeMirror-guttermarker
+  color white
+
+.CodeMirror-guttermarker-subtle
+  color #aaa
+
+.CodeMirror-linenumber
+  color #aaa
+
+.CodeMirror-cursor
+  border-left-color white !important
+
+.CodeMirror-activeline-background
+  background-color #27282e
+
+.CodeMirror-matchingbracket
+  outline 1px solid grey
+  color white !important
+
+.cm-keyword
+  color #f9ee98
+
+.cm-atom
+  color #ff0
+
+.cm-operator
+  color #cda869
+
+.cm-comment
+  color #777
+  font-style italic
+  font-weight normal
+
+.cm-string
+  color #ddd
+  font-style italic
+
+.cm-string-2
+  color #0074d9
+
+.cm-number
+  color #ddd
+  font-style italic
+
+.cm-def
+  color #8da6ce
+
+.cm-builtin
+  color #cda869
+
+.cm-variable
+  color #39cccc
+
+.cm-variable-2
+  color #bd6b18
+
+.cm-variable-3
+  color #607392
+
+.cm-meta
+  color #f7f7f7
+  background-color #141414
+
+.cm-tag
+  color #ff851b
+
+.cm-attribute
+  color #d6bb6d
+
+.cm-header
+  color #ff6400
+
+.cm-hr
+  color #aeaeae
+
+.cm-link
+  color #ad9361
+  font-style italic
+  text-decoration none
+
+.cm-error
+  border-bottom 1px solid red

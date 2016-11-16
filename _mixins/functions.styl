@@ -1,0 +1,47 @@
+
+// ----------------------------------------------------------------------------
+
+ensure($val, $types...)
+  unless $val is defined and $val in $types
+    $type-list = join(', ', $types)
+    error('Type Error: expected "%s" to be %s, actual type was %s...' % ($type $type-list typeof($val)))
+
+// ----------------------------------------------------------------------------
+
+sorted($list, $key = null, $cmp = null)
+  // Defaults for key function and key comparing function
+  if $key == null
+    $key = @($item) {
+      $item
+    }
+
+  if $cmp == null
+    $cmp = @($a, $b) {
+      $a > $b
+    }
+
+  $compare = @($a, $b) {
+    $cmp($key($a), $key($b))
+  }
+
+  // bubble sort
+  for $i in 1..length(list) - 1
+    for $j in 0..$i - 1
+      if $compare(list[$j], list[$i])
+        $temp = list[$i]
+        list[$i] = list[$j]
+        list[$j] = $temp
+
+  return list
+
+// ----------------------------------------------------------------------------
+
+domains($domains...)
+  $buf = ''
+  for $domains, $index in $domains
+    if $index
+      $buf += ', '
+    $buf += s('domain(%s)', $domain)
+
+  @-moz-document unquote($buf)
+    {block}

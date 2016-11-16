@@ -1,0 +1,68 @@
+
+$vertical-sides = top bottom
+$horizontal-sides = left right
+
+// ----------------------------------------------------------------------------
+
+is_side($v)
+  $v is defined and $v is a 'ident' and $v in top bottom left right
+
+is_vertical_side($side)
+  $side in $vertical-sides if is_side($side)
+
+is_horizontal_side($side)
+  $side in $horizontal-sides if is_side($side)
+
+axis($side)
+  if is_vertical_side($side)
+    $vertical-sides
+  else  if is_horizontal_side($side)
+    $horizontal-sides
+
+other_axis($side)
+  if is_vertical_side($side)
+    $horizontal-sides
+  else  if is_horizontal_side($side)
+    $vertical-sides
+
+scale($side)
+  height if is_vertical_side($side)
+  width if is_horizontal_side($side)
+
+// ----------------------------------------------------------------------------
+
+side-positioned($side, $size, $position = absolute)
+  $other = other-axis $side
+  $sv = scale $side
+
+  display: $position
+  {$side} 0px
+  for $s in other_axis $side
+    {$s} 0px
+  {$sv} $size
+
+  // if is_vertical_side($side)
+  //   display $position
+  //   {$side} 0px
+  //
+  //   left 0px
+  //   right
+  //   width $other-size
+  //   height $size
+  //
+  // else if $side in $horizontal-sides
+  //   {$position} top {$side}
+  //   width $size
+  //   height $other-size
+
+fixed-side-positioned($side, $size)
+  side-positioned($side, $size, fixed)
+
+
+axis-size($side, $size, $other-size = 100%)
+  $side in $vertical-sides ? height : width
+
+
+
+opposite-axis($side)
+  $side in $vertical-sides ? width : height

@@ -1,0 +1,21 @@
+# Project files
+*.sublime-*
+
+# Logs
+*.log
+
+# Compiled CSS
+css/
+
+# Archived/out of date styles
+attic/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm/
+
+# Optional REPL history
+.node_repl_history

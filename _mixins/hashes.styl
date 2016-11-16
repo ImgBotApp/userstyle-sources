@@ -1,0 +1,7 @@
+
+// ----------------------------------------------------------------------------
+
+important($styles-hash)
+  if $styles-hash is defined and $styles-hash is a 'object'
+    for k, v in $simple-style
+      {k} v !important

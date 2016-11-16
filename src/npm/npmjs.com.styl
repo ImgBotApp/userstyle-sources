@@ -1,0 +1,150 @@
+// @import "nib"
+// @import _mixins
+
+// @import url("https://fonts.googleapis.com/css?family=Noto\+Sans:400,700italic,400italic,700")
+
+// stylus -w -u nib --sourcemap-inline npmjs.com.styl
+
+// ----------------------------------------------------------------------------
+
+$text-colour = #222
+$code-colour = #ff8
+$link-colour = #05f
+$link-visited-colour = #b48
+
+
+// ----------------------------------------------------------------------------
+
+body
+  standard-type-settings()
+
+  font-size 16px
+  line-height 1.44em
+
+// Basic fonts for text, headings and mono
+body
+.featherweight-heading
+  font-family 'Segoe UI', 'Lucida Grande', sans-serif
+  font-weight normal
+
+h1
+  font-size 2.7em
+
+h2
+.package-description
+  font-size 1.7em
+  padding 0.7em 0 0.3em
+
+h1
+h2
+h3
+h4
+h5
+h6
+.package-description
+  color black
+  font-family 'Segoe UI Semibold', 'Segoe UI', 'Lucida Grande', sans-serif
+  font-weight normal
+  line-height 1.44em
+
+pre
+code
+kbd
+samp
+tt
+  font normal 1em/1.44em Consolas, monospace
+
+body
+.box
+  color $text-colour
+
+// ----------------------------------------------------------------------------
+// Colour visited/unvisited links
+
+.content
+#posts
+  a
+    link-colour($link-colour, $link-visited-colour)
+
+.content
+  h1
+    a
+      color $link-colour !important
+
+// ----------------------------------------------------------------------------
+// Styles for code blocks and inline code
+
+code
+  border solid 1px #ddd
+  padding-left 3px
+  padding-right 3px
+  &:hover
+    border-color #aaa
+
+pre
+  color $code-colour
+  background-color $text-colour
+  margin 0.8em 1em 1.2em
+  // padding 0.3em 0.9em
+  // box-shadow 3px 6px 9px #888
+  padding 0.25em 0.5em
+  box-shadow 0.3em 0.4em 0.2em 0 #bbb
+  font-size 0.9rem
+
+  code
+    display inline
+    overflow-wrap break-word
+
+  pre
+    white-space pre-wrap
+
+  code
+  pre
+  pre:hover
+    margin 0px
+    border none
+    padding 0px
+    box-shadow none
+    background-color transparent !important
+
+// ----------------------------------------------------------------------------
+// Syntax highlighting
+
+.highlight
+  color #eee
+
+  .comment
+    color #009e60
+
+  .variable
+    &.function
+      color #e8000d
+
+  .support
+    &.constant
+    &.function
+    &.type
+      color #ddd
+
+  .keyword
+  .storage
+    color #fdfd96
+
+  .keyword.operator
+  .meta.brace
+  .meta.delimiter.method.period
+  .meta.delimiter.object.comma
+  .punctuation.terminator.statement
+  .punctuation.section.scope
+    color #ff91a4
+    font-weight normal
+
+  .storage.modifier + span
+  .entity.name.function
+    color #f77fbe
+
+  .string.quoted
+  .numeric
+  .meta.structure.dictionary.json > .string.quoted.double.json
+  .meta.structure.dictionary.json > .string.quoted.double.json .punctuation.string
+    color #1e90ff

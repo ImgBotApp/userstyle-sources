@@ -1,0 +1,120 @@
+
+@require './_syntax-dark'
+
+// ----------------------------------------------------------------------------
+
+/* Code highlight styles - dark */
+:not(.oauth-wrapper)
+  .highlight
+    color $code-text
+
+  .highlight,
+  .highlight pre
+    background-color $code-background !important
+
+
+// ----------------------------------------------------------------------------
+
+/* Text styling */
+.blob-num,
+.blob-code-inner
+  padding-top 0.05em
+  padding-bottom 0.05em
+  font-size 10pt !important
+  line-height 1.44em !important
+  text-rendering optimizeLegibility !important
+  word-spacing normal
+  letter-spacing normal
+
+/* Line numbers */
+.blob-num
+  color $code-line-numbers !important
+  padding-top 4px !important
+
+/* Default text */
+.blob-code-inner
+  color $code-text !important
+
+  /* Current line highlight */
+  &[style]
+    background-color $code-highlight !important
+
+/* Differences */
+.blob-num-addition
+.blob-code-addition
+  background-color $code-line-addition !important
+
+.blob-code-addition
+  .x
+    background-color $code-word-addition !important
+
+.blob-code-deletion
+  .x
+    background-color $code-word-removal !important
+
+.blob-num-deletion
+.blob-code-deletion
+  background-color $code-line-removal !important
+
+
+// ----------------------------------------------------------------------------
+
+
+/* Comments */
+.pl-c
+  // font-style italic
+  // color #50c878 !important
+  syntax $code-comment !important
+
+/* Keywords, tag names */
+.pl-k
+.pl-ent
+  syntax $code-keyword !important
+
+/* Built-in variables */
+.pl-v
+  syntax $code-constants
+
+/* Built-ins */
+.pl-c1
+  syntax $code-builtins !important
+
+/* Regexp, CSS tag name */
+.pl-sr
+.pl-sr *
+  syntax $code-regexp
+  // color deeppink !important
+
+/* HTML tags */
+.pl-e
+.pl-en
+.type-html .pl-ent
+  syntax $code-tag !important
+  // color violet !important
+
+.pl-smi
+  syntax darkorange italic
+  // color darkorange
+  // font-style italic
+
+/* Strings and quotes */
+.pl-s
+.pl-pds
+  syntax $code-string !important
+  // color turquoise !important
+  // font-style italic !important
+
+for l in css scss stylus
+  .type-{l}
+    .pl-ii
+      @extend .pl-sr
+      background-color inherit
+    .pl-e
+      @extend .pl-smi
+    .pl-smi
+      syntax $code-variable !important
+    .pl-c1 + .pl-k
+      @extend .pl-c1
+
+
+

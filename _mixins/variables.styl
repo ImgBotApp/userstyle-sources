@@ -1,0 +1,30 @@
+
+// ----------------------------------------------------------------------------
+
+$serif-font ?= "Merriweather Sans", serif
+$sans-serif-font ?= "Noto Sans", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif
+$monospace-font ?= Monaco, Consolas, "Lucida Console", monospace
+
+$text-font ?= $sans-serif-font
+$text-size ?= 14pt
+$line-height ?= 1.44em
+
+$text-colour ?= #222
+$background-colour ?= #f5f6f7
+$box-shadow-colour ?= #bbb
+
+$link-colour ?= #05f
+$link-visited-colour ?= #b48
+
+// ----------------------------------------------------------------------------
+
+$link-style = {
+  color: #05f,
+  'text-decoration': none,
+  '&:visited': {
+    color: #b48
+  },
+  '&:hover': {
+    'text-decoration': underline
+  }
+}

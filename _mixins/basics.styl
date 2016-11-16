@@ -1,0 +1,108 @@
+
+// ----------------------------------------------------------------------------
+
+$_scales = {
+  padding:    0.5em,
+  margin:     1em,
+  shadow:     {
+    size:       0.5em,
+    opacity:    0.75
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+/*
+body
+  pad 2em
+div
+  pad 1em, padding margin
+*/
+
+pad($types = padding, $pad = $_scales.padding, $mgn = $_scales.margin)
+  padding ($pad / 2) $pad if padding in $types
+  margin ($mgn / 2) $mgn if margin in $types
+
+
+// ----------------------------------------------------------------------------
+
+shadow($size = $_scales.shadow.size, $opacity = $_scales.shadow.size)
+  box-shadow ($size * 0.5) $size ($size * 1.5) 0 rgba(255, 255, 255, $opacity)
+// ----------------------------------------------------------------------------
+
+/*
+a
+  link-colour(#05f, #c60)
+b
+  link-colour(#05f, $underline: none)
+c
+  link-colour(#05f, #c60, both)
+*/
+
+link-colour($colour, $visited = $colour, $underline = hover)
+  color: $colour
+
+  $off = off none hover
+
+  if $underline in $off
+    text-decoration: none
+  else
+    text-decoration: underline
+
+  &:visited
+    color: $visited
+
+  &:hover
+    $on = on both hover
+
+    if $underline in $on
+      text-decoration: underline
+    else
+      text-decoration: none
+
+// ----------------------------------------------------------------------------
+
+base-core($text-font)
+  @require url(web-font($text-font))
+
+  body
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    -webkit-font-variant-ligatures: none
+    font-variant-ligatures: none
+    text-rendering: optimizeLegibility
+
+    font: normal $text-size/$line-height $text-font
+
+    color: $text-colour
+    background-color: $background-colour
+
+    word-spacing: normal
+    letter-spacing: normal
+
+    cursor: auto !important
+
+  pre
+  code
+  tt
+  kbd
+  samp
+    font: normal $text-size/$line-height $monospace-font
+
+
+// ----------------------------------------------------------------------------
+
+base-links()
+  a
+    link-colour($link-colour, $link-visited-colour)
+
+
+// ----------------------------------------------------------------------------
+
+base-pre()
+  pre
+  textarea
+    margin: 1em 0 1em 2em
+    padding: 0.25em 0.5em
+    line-height: 1.44em
+    white-space: pre-wrap

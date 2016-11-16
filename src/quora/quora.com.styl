@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather\+Sans:400,400italic,700,700italic);
+
+// ----------------------------------------------------------------------------
+
+body
+  standard-type-settings()
+
+body,
+.ContentHeader,
+.feed_type_answer .TruncatedAnswer,
+.AnswerListItem .TruncatedAnswer,
+.feed_type_answer .ExpandedAnswer,
+.AnswerListItem .ExpandedAnswer
+  color black !important
+  font 12pt/1.44em 'Merriweather Sans', sans-serif !important
+
+a,
+.SiteHeader a:visited
+  color #05e !important
+
+a:visited
+  color #c50 !important
+
+// ----------------------------------------------------------------------------
+
+.ContentWrapper
+  width 80vw !important
+
+.grid_page
+.grid_page_wrap
+  display flex
+
+.grid_page
+.grid_page_left_col
+  margin-left 0 !important
+
+.grid_page_wrap
+.grid_page_left_col
+.grid_page_centre_col
+.grid_page_right_col
+  float none !important
+  width auto !important
+
+.grid_page_wrap
+  flex 1 1 auto
+
+.grid_page_right_col
+  flex 0 1 240px
+
+.grid_page_left_col
+  flex 0 1 145px
+
+.grid_page_center_col
+  flex 1 1 auto

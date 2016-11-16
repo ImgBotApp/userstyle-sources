@@ -1,0 +1,417 @@
+// stylus -U -u nib -o css --sourcemap-inline --hoist-atrules reddit-readability.styl
+
+// ----------------------------------------------------------------------------
+
+$text-font = 'Merriweather Sans'
+$monospace-font = Monaco, Consolas, 'Lucida Console', monospace
+
+$text-size = 14pt
+$line-height = 1.44em
+
+$link-colour = #05f
+$link-visited-colour = #b48
+$link-border-colour = #ccc
+// $link-visited-colour = #c60
+
+$button-colour = #49f
+$button-visited-colour = #c60
+
+$blockquote-colour = black
+$blockquote-background-colour = #ddd
+
+$new-comment-background-colour = #fde
+
+$focus-item-highlight-colour = #05f
+
+$comment-pad = 6px
+$textarea-pad = 0.4em
+
+
+// ----------------------------------------------------------------------------
+
+@import url(web-font('Merriweather Sans'))
+
+body
+  standard-type-settings()
+
+  font-family: 'Merriweather Sans', sans-serif
+  font-size: $text-size
+  line-height: $line-height
+  color: black
+
+
+  cursor: auto !important
+
+
+pre
+code
+tt
+kbd
+samp
+  font: normal $text-size/$line-height $monospace-font
+
+
+a
+  link-colour($link-colour, $link-visited-colour)
+
+
+// ----------------------------------------------------------------------------
+// --- Link colours ---
+
+.tagline a
+.search-result-meta a
+.thing a.title
+.md a
+  @extends a
+
+
+// ----------------------------------------------------------------------------
+// --- Text sizes ---
+
+.md
+  &
+  .-text
+  pre > code
+  li
+  p
+  textarea
+  th
+  td
+    font-size: inherit
+
+
+.usertext
+.md-container
+.md-container-small
+  font-size: inherit
+
+
+.commentingAs
+  font-size: 0.9em
+
+
+.tagline
+.flat-list
+.search-result-meta
+.RESDialogSmall
+.menuarea
+.morecomments a
+  font-size: 0.8em
+
+
+.domain
+  font-size: 0.7em
+
+
+// ----------------------------------------------------------------------------
+// --- Layout ---
+
+.side
+  overflow-x: hidden
+  position: relative
+  z-index: 2
+
+
+// ----------------------------------------------------------------------------
+// --- Items ---
+
+.thing
+  position: relative
+
+  .title
+    font-weight: bold
+    font-size: inherit
+    line-height: 2em
+
+
+.entry
+  position: relative
+  margin: 0
+  padding: $comment-pad ($comment-pad * 1.5) $comment-pad 30px
+  border-style: solid
+  border-width: 2px
+  border-color: transparent
+  box-sizing: border-box
+
+  &.RES-keyNav-activeElement
+    // padding: ($comment-pad - 2px) ($comment-pad * 1.5 - 2px) ($comment-pad - 2px) 28px
+    // border: solid 2px $focus-item-highlight-colour !important
+    border-color: $focus-item-highlight-colour
+    z-index: 2
+
+  .flat-list li a
+  a.give-gold
+    color: desaturate($link-colour, 50%) !important
+    font-size: inherit
+
+    &:after
+      display: none
+
+
+.md
+  color: inherit
+  max-width: 100%
+
+  .linklisting &
+  .commentarea &
+    margin: 0.5em 0.25em 0 0
+
+  blockquote
+    margin: 0.5em 0
+    padding: 0.4em 0.5em 0.25em
+    border-left: solid 2px #444
+
+    color: $blockquote-colour
+    background-color: $blockquote-background-colour
+    font-style: italic
+
+
+.expand-inline
+  margin-left: -20px
+
+
+.organic-listing
+  .link .entry
+    border-bottom: none
+    padding-bottom: 0
+
+  .sponsored-tagline
+    display: none
+
+
+// ----------------------------------------------------------------------------
+// --- Posts ---
+
+.link
+  &.last-clicked
+    border: none !important
+
+  .entry
+    border-bottom-color: $link-border-colour
+
+    &.RES-keyNav-activeElement
+      border-bottom-color: $focus-item-highlight-colour
+
+  .thumbnail
+  .midcol
+    margin-top: 5px !important
+
+  .tagline
+    float: left
+    line-height: 2.4em
+
+  .flair
+  .linkflairlabel
+    display: inline
+    font-size: 0.6em
+    pad()
+
+    &:empty
+      display: none
+
+  .flat-list
+    float: right
+    padding-right: 0.5em
+    line-height: 2.4em
+
+    @media (max-width: 800px)
+      float: none
+      padding-right: 0px
+
+    a.comments
+      color: white !important
+      background-color: $button-colour !important
+      // border: solid 2px $button-colour
+      border-radius: 4px !important
+      padding: 4px 6px 4px !important
+
+      .newComments
+        color: #bbb
+        font-style: italic
+
+      &:hover
+        background-color: darken($button-colour, 50%) !important
+        text-decoration: none
+
+      &:visited
+        background-color: $button-visited-colour !important
+
+        &:hover
+          background-color: darken($button-visited-colour, 50%) !important
+
+
+  .usertext-body
+    padding-top: 0.8em
+
+    .md
+      border: 0
+      border-radius: initial
+      background-color: inherit
+
+
+// ----------------------------------------------------------------------------
+// --- Comments ---
+
+.comment
+  .midcol
+    absolute: top 0.5em left 7.5px
+    width: 25px
+    float: none
+    margin: 0
+    z-index: 4
+
+    .arrow
+      margin: 0 0 0.5em
+
+      &:before
+        display: none !important
+
+  .parent
+    margin-left: 30px
+
+  .entry
+    background-color: inherit
+
+  .keyNavAnnotation
+    display: none !important
+
+  .tagline
+    display: block
+    border-bottom: dotted 1px #888
+    padding-bottom: 0.3em
+    margin-bottom: @padding-bottom
+
+    .score
+      font-weight: bold
+
+  .morechildren .tagline
+    border-bottom: 0
+
+  .flat-list
+    vertical-align: bottom
+
+    @media (max-width: 1199px)
+      margin: 0.5em 0 0
+      pad()
+      border-top: dotted 1px #888
+
+    @media (min-width: 1200px)
+      absolute: top 0.25em right 0.5em
+      font-size: 0.7em
+      opacity: 0.1
+
+  &.RES-keyNav-activeThing
+    .flat-list
+      z-index: 8
+
+    & > .entry .flat-list:hover
+      opacity: 1
+
+  .tagline:empty
+  .child:empty
+    display: none
+
+
+.profile-page .linklisting
+  .comment
+    margin-bottom: 0.5em
+    position: static
+
+    &:nth-child(4n+1)
+      background-color: #f4f4f4
+
+
+.newComments
+  color: black
+
+
+.new-comment
+  .usertext-body
+    border: none
+
+    .md
+      padding 4px 0 0
+
+  &
+  &.RES-keyNav-activeThing
+    .usertext-body.md-container
+      background-color: $new-comment-background-colour !important
+
+
+.edited-timestamp
+  visibility: hidden !important
+  position: absolute !important
+
+
+// ----------------------------------------------------------------------------
+// --- Editor/preview area ---
+
+.usertext-edit
+  width: 800px !important
+  max-width: 90% !important
+  margin: 0.75em 0 0 0.5em
+  font-size: inherit
+
+  textarea[name = text]
+    width: 100% !important
+    min-height: 8em
+    padding: $textarea-pad ($textarea-pad * 1.5)
+    border: solid 1px #888
+    font-family: inherit
+    font-size: 0.9em
+
+
+// ----------------------------------------------------------------------------
+// --- RES Styling ---
+
+#sr-header-area
+  height: auto !important
+  a
+    font-size: 10pt !important
+
+
+#RESShortcutsViewport
+  max-height: 100% !important
+  overflow-y: visible !important
+
+
+#header
+  min-height: 80px
+
+
+#header-bottom-left
+  absolute: bottom 1px left
+
+
+#header-bottom-right
+  margin-top: 3px
+
+
+.res-commentBoxes
+  .comment
+    padding 0 !important
+
+
+.RESDialogSmall.livePreview
+  pad()
+
+  & > h3
+    absolute: bottom left
+    right: 0
+    margin: 10px 0 0
+    padding: 0.25em 0.5em 0 0.5em
+    border-bottom: none
+    border-top: 1px solid rgb(199, 199, 199)
+
+  & > .md
+    padding-bottom: 36px
+
+  .gearIcon
+    float: left
+    margin: -0.15em 0.5em 0 0
+
+
+.RES-keyNav-activeElement
+  &
+  & .md-container
+    background-color: inherit !important

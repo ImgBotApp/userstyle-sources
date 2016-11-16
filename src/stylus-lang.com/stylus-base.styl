@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Noto\+Sans:400,400italic,700,700italic);
+
+// ----------------------------------------------------------------------------
+
+body
+  standard-type-settings()
+
+  margin 0 !important
+  padding 60px 0 !important
+  font-family 'Noto Sans', Verdana, sans-serif
+  line-height 1.44em
+
+pre, code, tt, kbd, samp
+  font-family Consolas, Monaco, monospace
+
+body, code, kbd, samp
+  font-size 14pt
+
+strong
+  color #f012be !important
+
+a, a:visited
+  color #07f !important
+
+h2
+  font-size 14pt
+  padding 0.6em 0 0.3em
+  border-bottom solid 2px slateblue
+
+#container
+  width auto !important
+  margin 0 10vw !important
+  padding 0 !important
+  & > h1
+    position fixed
+    top 10px !important
+    right 0 !important
+    width 10vw !important
+    height 8vw !important
+    display flex
+    margin 0px !important
+    padding 0px !important
+    & > a
+      width 100% !important
+      height auto
+      margin 0 0.75vw !important
+      background-size cover !important
+      background-position 0% 50% !important
+  #ribbon
+    top 2em !important
+
+#container > h1,
+#container #ribbon
+  opacity 0.75
+
+.tagline
+  display none !important
+
+#container #menu,
+#container #content
+  position static !important
+  width 100% !important
+  margin 0px !important

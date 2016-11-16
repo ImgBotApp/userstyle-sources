@@ -1,0 +1,51 @@
+
+// @require './positions'
+
+// ----------------------------------------------------------------------------
+
+$fixed-width
+  width: auto
+  max-width: 100%
+  float: none
+
+flex-sidebar($width = 20%)
+  @extends $fixed-width
+  order: $order += 1
+  flex: 0 0 $width
+
+flex-content()
+  @extends $fixed-width
+  order: $order += 1
+  flex: 1 1 auto
+
+flex-left($width = 20%)
+  & > :first-child
+    flex-sidebar($width)
+  & > *
+    flex-content()
+
+flex-right($width = 20%)
+  & > *
+    flex-content()
+  & > :last-child
+    flex-sidebar($width)
+
+flex-sidebar-layout($side = left, $width = 20%)
+  $order = 0
+
+  display: flex
+  flex-flow: row nowrap
+
+  flex-left($width) if $side is left
+  flex-right($width) if $side is right
+
+// ----------------------------------------------------------------------------
+
+docked($side = bottom, $size = 25%)
+  $axis = axis($side)
+  $other-axis = opposite-axis($side)
+
+  div.dock.dock-{$side}
+    side-positioned($side, $size)
+
+    {block}

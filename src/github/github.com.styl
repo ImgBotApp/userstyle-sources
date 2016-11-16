@@ -1,0 +1,197 @@
+@import url(https://fonts.googleapis.com/css?family=Noto\+Sans:400,400italic,700,700italic);
+
+// ----------------------------------------------------------------------------
+
+body
+  standard-type-settings()
+
+  font 14pt/1.44em 'Noto Sans', sans-serif !important
+  color #181818 !important
+
+
+pre, code, tt, kbd
+  font-family Consolas, Monaco, monospace !important
+  font-size inherit
+  line-height 1.44em !important
+
+pre
+  white-space pre-wrap
+
+// ----------------------------------------------------------------------------
+
+/* General growing and shrinking... */
+
+.site-search .form-control
+span.counter
+  font-size 10pt !important
+
+span.counter
+  padding-top 6px !important
+
+.site-search input[name=q]
+.repo-list-stats
+.timeline-commits td
+.filter-list.small .filter-item
+.commit .sha-block
+.commit .sha
+.commit-tease .authorship
+.repository-sidebar .repo-nav
+.issue-meta
+.issue-comments
+  font-size 11pt !important
+
+.gh-header-meta
+.header-nav-link
+.repo-list-description
+.repo-list-meta
+.file-info
+  font-size 12pt !important
+
+.comment-body
+.issue-title-link
+  font-size 13pt !important
+
+.notification-indicator
+  .mail-status
+    width 18px !important
+    height 18px !important
+
+// ----------------------------------------------------------------------------
+
+/* Nav bar */
+
+.header
+  padding-bottom 5px !important
+
+.user-nav
+  .octicon-bell
+    font-size 28px !important
+    width 28px !important
+    height 30px !important
+
+  .header-nav-link
+    height auto !important
+    margin-top -4px !important
+    padding-top 0 !important
+    padding-bottom 0 !important
+
+    img
+      width 40px !important
+      height 40px !important
+      border solid #888 1px !important
+
+.header-nav-item
+  .dropdown-caret
+    vertical-align 0 !important
+
+// ----------------------------------------------------------------------------
+
+/* Widen content */
+
+.container
+  width 80vw !important
+
+.repository-with-sidebar
+  display flex !important
+
+  .repository-sidebar
+    order 1
+    flex 0 0 170px
+    margin-left 20px !important
+    float none !important
+
+  .repository-content
+    order 0
+    flex 1 1 auto
+    float none !important
+
+// ----------------------------------------------------------------------------
+
+/* Module home/folder view */
+
+table.files
+  font-size 13pt
+
+table.files td.message
+table.files td.message a
+table.files td.age
+.repository-meta
+.numbers-summary li
+  color #222 !important
+
+.numbers-summary
+  a:hover
+    color #07f !important
+
+.commit-tease
+  .zeroclipboard-link
+    margin-top 4px !important
+    margin-left 10px !important
+
+// ----------------------------------------------------------------------------
+
+/* Module file view */
+
+.tab-size[data-tab-size]
+  tab-size 2 !important
+
+.file
+.file-header
+.blob-num
+  border-color #aaa !important
+
+.file-info
+  color mediumblue !important
+
+tr
+  &:nth-child(1)
+    td
+      padding-top 0.5em !important
+
+  &:nth-last-child(1)
+    td
+      padding-bottom 0.5em !important
+
+// ----------------------------------------------------------------------------
+
+.issues-listing
+  .table-list-issues
+    .issue-title
+      padding-top 7px !important
+      padding-bottom 4px !important
+
+    .table-list-cell-avatar
+      padding-top 11px !important
+
+    .issue-comments
+      padding-top 6px !important
+
+.table-list-cell-type
+  padding-top 4px !important
+
+.issue-title-link
+.issues-listing .table-list-issues .labels
+.issue-meta
+  margin-bottom 0 !important
+  vertical-align top
+
+// ----------------------------------------------------------------------------
+
+/* Discussions */
+#discussion_bucket
+  display flex !important
+
+  .discussion-sidebar
+    order 1
+    flex 0 0 150px
+    margin-left 20px !important
+    float none !important
+
+  .discussion-timeline
+    order 0
+    flex 1 1 auto
+    float none !important
+
+// ----------------------------------------------------------------------------
+
+@import "./_syntax-highlighting"
