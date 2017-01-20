@@ -56,6 +56,19 @@
 .blob-code-deletion
   background-color $code-line-removal !important
 
+.js-expandable-line
+  .blob-code-inner
+    color black
+    background-color rgba(white, 0.5)
+    transition-property color, background-color
+    transition-duration 2s
+    transition-function ease-in-out
+
+  .blob-expanded
+    .blob-code-inner
+      color inherit
+      background-color rgba(white, 0.25)
+
 
 // ----------------------------------------------------------------------------
 
