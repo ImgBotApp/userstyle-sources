@@ -1,0 +1,64 @@
+
+coloured-underline($underline-color = currentColor)
+  padding-bottom 1px
+  border-bottom 2px solid $underline-color
+
+// ----------------------------------------------------------------------------
+
+$text-font              = Leto
+$text-weight            = 400
+$text-size              = 12pt
+$text-line-height       = 1.4em
+
+$monospace-font         = Consolas
+$monospace-weight       = 400
+$monospace-size         = 0.9rem
+$monospace-line-height  = 1.25em
+
+$text-color             = #111
+$background-color       = #f2f3f4
+
+$link-color             = #0082ad
+$visited-color          = #767676
+
+
+// ----------------------------------------------------------------------------
+
+html
+body
+  color $text-color
+  background-color $background-color
+
+  text-rendering optimizeLegibility
+
+  word-spacing normal
+  letter-spacing normal
+
+  font-family $text-font, Arial, sans-serif
+  font-weight $text-weight
+  font-size $text-size
+  line-height $text-line-height
+
+a
+  color inherit
+  text-decoration none
+  coloured-underline $link-color
+
+  &:hover
+  &:focus
+  &:active
+    color $underline-color
+
+  &:visited
+    border-bottom-color $visited-color
+
+pre
+textarea
+tt
+code
+kbd
+samp
+  font-family $monospace-font, 'Courier New', monospace
+  font-weight $monospace-weight
+  font-size $monospace-size
+  line-height $monospace-line-height
