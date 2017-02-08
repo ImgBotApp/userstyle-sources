@@ -1,10 +1,14 @@
 
-const gulp = require('gulp')
-const $ = require('gulp-load-plugins')()
-const del = require('del')
 const path = require('path')
 
+const gulp = require('gulp')
+const $ = require('gulp-load-plugins')()
+const lazypipe = require('lazypipe')
+
+const del = require('del')
+
 const nib = require('nib')
+const rupture = require('rupture')
 
 // ----------------------------------------------------------
 
@@ -14,12 +18,24 @@ const config = {
   libs: './_mixins/*.styl',
   dest: './css',
   stylus: {
-    use: [
-      nib()
+    import: [
+      path.resolve('./_mixins'),
+      'nib',
+      'rupture'
     ],
-    import: path.resolve('./_mixins')
+    use: [
+      nib(),
+      rupture()
+    ]
   }
 }
+
+// ----------------------------------------------------------
+
+const stylusBuild = lazypipe()
+  .pipe($.sourcemaps.init)
+  .pipe($.stylus, config.stylus)
+  .pipe($.sourcemaps.write)
 
 // ----------------------------------------------------------
 
@@ -32,17 +48,39 @@ gulp.task('clean', () => {
 gulp.task('stylus', () => {
   gulp.src(config.src)
     .pipe($.newer(config.dest))
-    .pipe($.sourcemaps.init())
-    .pipe($.stylus(config.stylus))
-    .pipe($.sourcemaps.write())
+    // .pipe($.sourcemaps.init())
+    // .pipe($.stylus({
+    //   import: [
+    //     config.stylus.import,
+    //     'nib',
+    //     'rupture'
+    //   ],
+    //   use: [
+    //     nib(),
+    //     rupture()
+    //   ]
+    // }))
+    // .pipe($.sourcemaps.write())
+    .pipe(stylusBuild())
     .pipe(gulp.dest(config.dest))
 })
 
 gulp.task('stylus:all', () => {
   gulp.src(config.src)
-    .pipe($.sourcemaps.init())
-    .pipe($.stylus(config.stylus))
-    .pipe($.sourcemaps.write())
+    // .pipe($.sourcemaps.init())
+    // .pipe($.stylus({
+    //   import: [
+    //     config.stylus.import,
+    //     'nib',
+    //     'rupture'
+    //   ],
+    //   use: [
+    //     nib(),
+    //     rupture()
+    //   ]
+    // }))
+    // .pipe($.sourcemaps.write())
+    .pipe(stylusBuild())
     .pipe(gulp.dest(config.dest))
 })
 

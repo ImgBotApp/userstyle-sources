@@ -1,4 +1,5 @@
 // stylus -U -u nib -o css --sourcemap-inline --hoist-atrules reddit-readability.styl
+// @import nib
 
 // ----------------------------------------------------------------------------
 
@@ -8,7 +9,10 @@ $monospace-font = Monaco, Consolas, 'Lucida Console', monospace
 $text-size = 14pt
 $line-height = 1.44em
 
+$text-colour = black
+
 $link-colour = #05f
+$link-underline-colour = lighten($link-colour, 50%)
 $link-visited-colour = #b48
 $link-border-colour = #ccc
 // $link-visited-colour = #c60
@@ -16,12 +20,17 @@ $link-border-colour = #ccc
 $button-colour = #49f
 $button-visited-colour = #c60
 
+$border-light-colour = #bbb
+$border-medium-colour = #888
+
 $blockquote-colour = black
 $blockquote-background-colour = #ddd
+$blockquote-border-colour = #444
 
 $new-comment-background-colour = #fde
+$new-comments-link-colour = #bbb
 
-$focus-item-highlight-colour = #05f
+$focus-item-highlight-colour = $link-underline-colour
 
 $comment-pad = 6px
 $textarea-pad = 0.4em
@@ -37,8 +46,7 @@ body
   font-family: 'Merriweather Sans', sans-serif
   font-size: $text-size
   line-height: $line-height
-  color: black
-
+  color: $text-colour
 
   cursor: auto !important
 
@@ -51,18 +59,19 @@ samp
   font: normal $text-size/$line-height $monospace-font
 
 
-a
-  link-colour($link-colour, $link-visited-colour)
-
-
 // ----------------------------------------------------------------------------
 // --- Link colours ---
 
-.tagline a
+a
+  link-colour($link-colour, $link-visited-colour)
+
 .search-result-meta a
+.tagline a
 .thing a.title
-.md a
   @extends a
+
+.md a:not(.expando-button)
+  link-underline($link-colour, $link-visited-colour)
 
 
 // ----------------------------------------------------------------------------
@@ -159,7 +168,7 @@ a
   blockquote
     margin: 0.5em 0
     padding: 0.4em 0.5em 0.25em
-    border-left: solid 2px #444
+    border-left: solid 2px $blockquote-border-colour
 
     color: $blockquote-colour
     background-color: $blockquote-background-colour
@@ -214,7 +223,7 @@ a
     padding-right: 0.5em
     line-height: 2.4em
 
-    @media (max-width: 800px)
+    +below(3)
       float: none
       padding-right: 0px
 
@@ -226,7 +235,7 @@ a
       padding: 4px 6px 4px !important
 
       .newComments
-        color: #bbb
+        color: $new-comments-link-colour
         font-style: italic
 
       &:hover
@@ -277,7 +286,7 @@ a
 
   .tagline
     display: block
-    border-bottom: dotted 1px #888
+    border-bottom: dotted 1px $border-medium-colour
     padding-bottom: 0.3em
     margin-bottom: @padding-bottom
 
@@ -290,19 +299,28 @@ a
   .flat-list
     vertical-align: bottom
 
-    @media (max-width: 1199px)
+    z-index: 8
+    opacity: 0.5
+
+    +not-desktop()
       margin: 0.5em 0 0
       pad()
-      border-top: dotted 1px #888
+      border-top: dotted 1px $border-medium-colour
 
-    @media (min-width: 1200px)
+    +desktop()
       absolute: top 0.25em right 0.5em
       font-size: 0.7em
-      opacity: 0.1
+
+      visibility: hidden
 
   &.RES-keyNav-activeThing
-    .flat-list
-      z-index: 8
+    > .entry .flat-list
+      +not-desktop()
+        opacity: 1
+
+      +desktop()
+        opacity: 0.75
+        visibility: visible
 
     & > .entry .flat-list:hover
       opacity: 1
@@ -322,7 +340,7 @@ a
 
 
 .newComments
-  color: black
+  color: $text-colour
 
 
 .new-comment
@@ -356,7 +374,7 @@ a
     width: 100% !important
     min-height: 8em
     padding: $textarea-pad ($textarea-pad * 1.5)
-    border: solid 1px #888
+    border: solid 1px $border-medium-colour
     font-family: inherit
     font-size: 0.9em
 
@@ -401,7 +419,7 @@ a
     margin: 10px 0 0
     padding: 0.25em 0.5em 0 0.5em
     border-bottom: none
-    border-top: 1px solid rgb(199, 199, 199)
+    border-top: 1px solid $border-light-colour
 
   & > .md
     padding-bottom: 36px

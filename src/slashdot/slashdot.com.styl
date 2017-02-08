@@ -2,6 +2,22 @@
 
 // ----------------------------------------------------------------------------
 
+$lightest-blue  = #bef
+$light-blue     = #adf
+$medium-blue    = #5af
+$dark-blue      = #05f
+
+$off-white      = #f2f3f4
+
+$border-grey    = #c8c8c8
+$dark-grey      = #4d4d4d
+
+$light-green    = #0a0
+
+$medium-orange  = #c60
+
+// ----------------------------------------------------------------------------
+
 body
   standard-type-settings()
 
@@ -9,19 +25,151 @@ body
 p
 textarea
   color black !important
-  font normal 13px/1.44em 'Merriweather Sans', sans-serif !important
+  font normal 14pt/1.44em 'Merriweather Sans', sans-serif !important
 
-pre, code, tt, kbd
+pre
+code
+tt
+kbd
   font-family Consolas, monospace !important
 
+// ----------------------------------------------------------------------------
+
 .score a
-  color #bef
+  color $lightest-blue
 
   .title &
-    color #adf
+    color $light-blue
 
 .title
 .story
 nav
   a
-    color #5af
+    color $medium-blue
+
+.article .body .p
+.commentBody
+.bodytext
+  a
+    color $medium-blue
+    text-decoration none
+
+    &:visited
+      color $medium-orange
+
+// ----------------------------------------------------------------------------
+
+.by
+  color black
+
+  & a
+    color $dark-blue
+
+  .byby
+    color $dark-grey
+
+// ----------------------------------------------------------------------------
+
+#comments
+  ul#commentlisting
+    vertical-spacing(1em)
+
+    li.comment
+      > ul
+        margin 0 0 0 0.5em !important
+        padding 0 0 0 0.5em
+
+        vertical-spacing(1em, 0, 0)
+
+        .full
+          &:first-child
+            margin-top 1em !important
+          // &:last-child
+          //   margin-bottom 1em !important
+
+      .show a
+        display block
+
+        &:hover
+          text-decoration none
+          font-size 1.1em
+          color $medium-blue
+          border-bottom-style solid
+          border-bottom-width 1px
+          border-bottom-color $medium-blue
+          transition 0.3s ease-in-out
+
+      &.full
+        border none
+        border-left 1px solid $border-grey
+        border-top @border-left
+
+        .cw
+          margin-bottom 0.5em
+
+      .commentBody
+        padding 0.5em 1em 0 !important
+        vertical-spacing(0.5em, 0.5em, 0.5em)
+
+        > div[id ^= comment_body]
+          vertical-spacing(1em, 0, 0)
+
+          > .quote
+            vertical-spacing(1em, 0, 0)
+
+
+      .commentSub
+        padding 0.2em 0.6em
+        height auto
+
+        .btn.link
+          // font-size 1em
+          margin 0 3px
+          padding 3px 6px
+          text-decoration none
+          border solid 1px $border-grey !important
+          border-radius 4px
+
+          &:hover
+            background-color $off-white !important
+
+    li
+      .contain &
+        left -12px
+
+      &.oneline > ul
+        margin-bottom 0px !important
+
+      &.hidden
+        display none
+
+      .sig
+        color $light-green
+        font-style italic
+
+  .full .current
+    font-size 2em
+    margin-left -20px
+    margin-top 0
+
+// ----------------------------------------------------------------------------
+
+#clickgen
+  max-height 100%
+
+  .f > div
+    height 100%
+
+  ul.nobullets
+    > li
+      padding-bottom 0.2em
+
+      .cmntcnt
+        display inline-block !important
+        margin-right 0.5em !important
+
+        > span:not(.slant)
+          color black
+          background-color $light-blue
+          width auto
+

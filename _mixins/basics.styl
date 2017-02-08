@@ -65,23 +65,52 @@ link-colour($colour, $visited = $colour, $underline = hover)
 
 // ----------------------------------------------------------------------------
 
-base-core($text-font)
-  @require url(web-font($text-font))
+link-underline($underline-colour = currentColor, $visited-colour = #c60)
+  // color: $underline-colour
+  color: inherit
+  padding-bottom: 1px
+  border-bottom-style: solid
+  border-bottom-width: 2px
+  border-bottom-color: rgba($underline-colour, 0.5)
+
+  &:hover
+    color: $underline-colour
+    border-bottom-color: $underline-colour
+    text-decoration: none
+    transition: all ease-in 0.25s
+
+  &:visited
+    border-bottom-color: $visited-colour
+
+    &:hover
+      color: $visited-colour
+
+
+// ----------------------------------------------------------------------------
+
+base-core($text-font-family, $font-size = 14pt)
+  @require url(web-font($text-font-family))
+
+  html
+    font-size: $font-size
 
   body
-    -webkit-font-smoothing: antialiased
-    -moz-osx-font-smoothing: grayscale
-    -webkit-font-variant-ligatures: none
-    font-variant-ligatures: none
-    text-rendering: optimizeLegibility
+    font-family: $text-font-family
+    font-weight: $font-weight
+    font-feature-settings: "liga", "dlig"
 
-    font: normal $text-size/$line-height $text-font
+    -webkit-text-size-adjust: 100%
+    font-size-adjust: $font-size
+    line-height: $line-height
+
+    word-spacing: normal
+    letter-spacing: normal
 
     color: $text-colour
     background-color: $background-colour
 
-    word-spacing: normal
-    letter-spacing: normal
+    // -webkit-font-smoothing: antialiased
+    text-rendering: optimizeLegibility
 
     cursor: auto !important
 
@@ -90,7 +119,8 @@ base-core($text-font)
   tt
   kbd
   samp
-    font: normal $text-size/$line-height $monospace-font
+    font: normal inherit $monospace-font
+    line-height: $line-height
 
 
 // ----------------------------------------------------------------------------
@@ -109,3 +139,8 @@ base-pre()
     padding: 0.25em 0.5em
     line-height: 1.44em
     white-space: pre-wrap
+
+// ----------------------------------------------------------------------------
+
+normalise()
+  @include ./normalise

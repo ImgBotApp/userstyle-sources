@@ -1,44 +1,4 @@
 
-// @require './positions'
-
-// ----------------------------------------------------------------------------
-
-$fixed-width
-  width: auto
-  max-width: 100%
-  float: none
-
-flex-sidebar($width = 20%)
-  @extends $fixed-width
-  order: $order += 1
-  flex: 0 0 $width
-
-flex-content()
-  @extends $fixed-width
-  order: $order += 1
-  flex: 1 1 auto
-
-flex-left($width = 20%)
-  & > :first-child
-    flex-sidebar($width)
-  & > *
-    flex-content()
-
-flex-right($width = 20%)
-  & > *
-    flex-content()
-  & > :last-child
-    flex-sidebar($width)
-
-flex-sidebar-layout($side = left, $width = 20%)
-  $order = 0
-
-  display: flex
-  flex-flow: row nowrap
-
-  flex-left($width) if $side is left
-  flex-right($width) if $side is right
-
 // ----------------------------------------------------------------------------
 
 docked($side = bottom, $size = 25%)
@@ -49,3 +9,20 @@ docked($side = bottom, $size = 25%)
     side-positioned($side, $size)
 
     {block}
+
+
+// ----------------------------------------------------------------------------
+
+vertical-spacing($between = 1em, $before = null, $after = null, $horiz = 0)
+  if $before == null
+    $before = $between
+  if $after == null
+    $after = $between
+
+  > *
+    margin 0 $horiz $between !important
+
+    &:first-child
+      margin-top $before !important
+    &:last-child
+      margin-bottom $after !important
