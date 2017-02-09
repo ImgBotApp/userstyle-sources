@@ -1,33 +1,37 @@
-// @import "./_common"
-
-// ----------------------------------------------------------------------------
-
-$title-y-offset           = -600px
 
 // ------------------------------------------------------------
 
-.grey-fade
-  filter grayscale(100%)
-  transition 1.5s ease-in-out
+hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=100%)
+  filter grayscale($greyness)
+  transition filter $fade-out-duration ease-out
 
   &:hover
     filter grayscale(0)
+    transition filter $fade-in-duration ease-in
 
 
 // ------------------------------------------------------------
 
 .main-image
   $image = 'https://photos.smugmug.com/All-Folders/Wedding-/i-bZsmPQ3/0/X3/Lianne%20%281%20of%201%29-X3.jpg'
-
   $font = Pacifico, sans-serif
+
+  $fade-in-colour-duration = 0.5s
+  $fade-out-colour-duration = 2s
 
   position relative
   height 100vh
 
-  background url($bg-image) no-repeat center center fixed
+  // To offset margin on .sm-page-widget .sm-page-widget-content
+  margin -12px
+
+  background url($image) no-repeat center center scroll
   background-size cover
 
   font-family $font
+
+  hover-fade-to-colour $fade-in-colour-duration $fade-out-colour-duration
+
 
   // ----------------------------------------------------------
 
@@ -42,7 +46,7 @@ $title-y-offset           = -600px
 
     $spacing                  = 0.15em
 
-    absolute top 50% right 40%
+    absolute top 53% right 43%
     z-index 2
 
     // font-family $title-font
