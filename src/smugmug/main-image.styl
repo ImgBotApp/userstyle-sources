@@ -1,0 +1,107 @@
+
+// ------------------------------------------------------------
+
+hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=100%)
+  filter grayscale($greyness)
+  transition filter $fade-out-duration ease-out
+
+  &:hover
+    filter grayscale(0)
+    transition filter $fade-in-duration ease-in
+
+
+// ------------------------------------------------------------
+
+.main-image
+  $image = 'https://photos.smugmug.com/All-Folders/Wedding-/i-bZsmPQ3/0/X3/Lianne%20%281%20of%201%29-X3.jpg'
+  $font = Pacifico, sans-serif
+
+  $fade-in-colour-duration = 0.5s
+  $fade-out-colour-duration = 2s
+
+  position relative
+  height 100vh
+
+  // To offset margin on .sm-page-widget .sm-page-widget-content
+  margin -12px
+
+  background url($image) no-repeat center center scroll
+  background-size cover
+
+  font-family $font
+
+  hover-fade-to-colour $fade-in-colour-duration $fade-out-colour-duration
+
+
+  // ----------------------------------------------------------
+
+  .image-text
+    $title-size               = 80px
+    $subtitle-size            = $title-size / 3
+    $subtitle-quote-size      = 1.2em
+
+    $title-colour             = #ddd
+    $title-stroke-colour      = darken($title-colour, 50%)
+    $subtitle-colour          = rgba($title-colour, 75%)
+
+    $spacing                  = 0.15em
+
+    absolute top 53% right 43%
+    z-index 2
+
+    // font-family $title-font
+
+    // --------------------------------------------------------
+
+    .image-title
+      margin 0 0 ($spacing * 2)
+
+      font-size $title-size
+      color $title-colour
+
+      // stroke($title-colour, $title-stroke-colour)
+      // text-shadow 1px 2px #eee
+
+      animation floating-text 2s ease-in-out alternate infinite
+
+    // --------------------------------------------------------
+
+    .image-subtitle
+      text-align right
+
+      font-size $subtitle-size
+      color $subtitle-colour
+
+      p
+        margin 0 0 $spacing
+
+      .quote-source
+        font-size $subtitle-quote-size
+        &:before
+            content "– "
+
+
+// --------------------------------------------------
+
+@keyframes floating-text
+  0%
+    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
+    //   0 0 0.2em rgba(0, 0, 0, 0.3),
+    //   0 0.3em 0.2em rgba(0, 0, 0, 0.3)
+    transform translateY(0.1em)
+    text-shadow 3px 3px 0 rgba(#ddd, 20%)
+              // -1px -1px 0 rgba(#ddd, 50%),
+              //  1px -1px 0 rgba(#ddd, 50%),
+              //  -1px 1px 0 rgba(#ddd, 50%),
+              //   1px 1px 0 rgba(#ddd, 50%)
+
+  100%
+    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
+    //   0 0 0.2em rgba(0, 0, 0, 0.3),
+    //   0 0.5em 0.5em rgba(0, 0, 0, 0.3)
+    text-shadow 3px 3px 0 rgba(#ddd, 50%)
+              // -1px -1px 0 rgba(#ddd, 50%),
+              //  1px -1px 0 rgba(#ddd, 50%),
+              //  -1px 1px 0 rgba(#ddd, 50%),
+              //   1px 1px 0 rgba(#ddd, 50%)
+
