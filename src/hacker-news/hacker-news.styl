@@ -1,0 +1,86 @@
+use-web-font($name, $variants='400 400i 700 700i')
+  @import url(web-font($name, $variants))
+
+  body
+    font-family $name
+
+fs($size)
+  font-family inherit
+  font-size $size
+  line-height 1.44em
+
+// ----------------------------------------------------------------------------
+
+$link-colour = #37f
+$link-visited-colour = #c60
+$comment-link-colour = #5a5aa0
+
+$reply-background-colour = #5af
+$comment-head-underline-colour = #888
+
+
+// ----------------------------------------------------------------------------
+
+// @import url(web-font('https://fonts.googleapis.com/css?family=Merriweather+Sans');
+
+use-web-font('Merriweather Sans')
+
+body
+  standard-type-settings()
+  font-size 12pt
+  line-height 1.44em
+
+p
+.default
+.pagetop
+.title
+.comment
+  fs 1rem
+
+.comhead
+.subtext
+  fs 11pt
+
+  a.hnuser
+    color $link-colour !important
+    text-decoration none !important
+
+.default
+  > :first-child
+    margin-bottom 4px !important
+    border-bottom solid 1px $comment-head-underline-colour
+
+  > br
+    display none
+
+  .reply
+    p
+      margin-top 4px
+
+    a
+      padding 0 2px
+      fs 11pt
+      text-decoration none !important
+      color white !important
+      background-color $reply-background-colour !important
+
+.title
+  > a:visited
+    color shade($link-visited-colour, 30%)
+
+.subtext
+  > a:last-child
+    color $comment-link-colour
+    font-weight bold
+
+.comment
+  a
+    link-colour($link-colour, $link-visited-colour)
+
+.votearrow
+  width 12px
+  height 12px
+  margin 5px 2px 4px 4px
+
+tr.spacer
+  height 10px !important
