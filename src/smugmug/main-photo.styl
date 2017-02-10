@@ -1,0 +1,79 @@
+// @import "./_common"
+
+// ------------------------------------------------------------
+
+$title-y-offset           = -600px
+
+$title-size               = 80px
+$subtitle-size            = $title-size / 3
+$subtitle-quote-size      = 1.2em
+
+$title-colour             = #ddd
+$title-stroke-colour      = darken($title-colour, 50%)
+$subtitle-colour          = $title-colour
+
+$spacing                  = 0.15em
+
+// ------------------------------------------------------------
+
+.homepage-main-photo
+  // margin auto
+  // position relative
+
+  display inline-block
+  transform translate(200px, -500px)
+  z-index 2
+
+  // ----------------------------------------------------------
+
+  h1
+    margin-bottom 0.5em
+
+    font-size $title-size
+    font-family $title-font
+
+    color $title-colour
+    // stroke($title-colour, $title-stroke-colour)
+
+    // text-shadow 1px 2px #eee
+    animation floating-text 2s ease-in-out alternate infinite
+
+  // ----------------------------------------------------------
+
+  .homepage-subtitle
+    text-align right
+    color $subtitle-colour
+
+    p
+      margin-bottom 0.15em
+
+    .quote-body
+      font-size $subtitle-size
+
+    .quote-source
+      font-size $subtitle-quote-size
+
+// --------------------------------------------------
+
+@keyframes floating-text
+  0%
+    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
+    //   0 0 0.2em rgba(0, 0, 0, 0.3),
+    //   0 0.3em 0.2em rgba(0, 0, 0, 0.3)
+    transform translateY(0.1em)
+    text-shadow 3px 3px 0 rgba(#ddd, 20%)
+              // -1px -1px 0 rgba(#ddd, 50%),
+              //  1px -1px 0 rgba(#ddd, 50%),
+              //  -1px 1px 0 rgba(#ddd, 50%),
+              //   1px 1px 0 rgba(#ddd, 50%)
+
+  100%
+    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
+    //   0 0 0.2em rgba(0, 0, 0, 0.3),
+    //   0 0.5em 0.5em rgba(0, 0, 0, 0.3)
+    text-shadow 3px 3px 0 rgba(#ddd, 50%)
+              // -1px -1px 0 rgba(#ddd, 50%),
+              //  1px -1px 0 rgba(#ddd, 50%),
+              //  -1px 1px 0 rgba(#ddd, 50%),
+              //   1px 1px 0 rgba(#ddd, 50%)
+
