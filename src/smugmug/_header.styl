@@ -1,0 +1,41 @@
+@require '_common'
+
+
+// ------------------------------------------------------------
+
+&.sm-page-layout-region-header
+  background-color $nav-bar-background
+  box-shadow 0 0 12px 4px $nav-bar-shadow
+
+  +desktop()
+    position fixed
+    top 0
+    left 0
+    right 0
+
+    height $nav-bar-height
+    z-index 99
+
+    .sm-page-layout-region-top
+      height 100% !important
+
+    .sm-page-layout-row
+      display flex
+      flex-flow row nowrap
+      justify-content space-between
+      align-items center
+      height 100%
+
+      .sm-page-layout-column
+        flex 0 1 auto
+
+        &:first-child
+          padding-left 50px
+          text-align left
+
+        &:last-child
+          padding-right 50px
+          text-align right
+
+        .sm-page-widget .sm-page-widget-content
+          margin 0

@@ -75,33 +75,44 @@ hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=
       p
         margin 0 0 $spacing
 
-      .quote-source
-        font-size $subtitle-quote-size
-        &:before
-            content "– "
+        &.quote
+          &:before
+            content '&ldquo;'
+            padding-right 0.25em
+          &:after
+            content '&rdquo;'
+            padding-left 0.25em
+
+        &.quote-source
+          font-size $subtitle-quote-size
+          &:before
+              content "– "
 
 
 // --------------------------------------------------
 
 @keyframes floating-text
   0%
-    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
-    //   0 0 0.2em rgba(0, 0, 0, 0.3),
-    //   0 0.3em 0.2em rgba(0, 0, 0, 0.3)
     transform translateY(0.1em)
-    text-shadow 3px 3px 0 rgba(#ddd, 20%)
-              // -1px -1px 0 rgba(#ddd, 50%),
-              //  1px -1px 0 rgba(#ddd, 50%),
-              //  -1px 1px 0 rgba(#ddd, 50%),
-              //   1px 1px 0 rgba(#ddd, 50%)
+
+    text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
+                0 0 0.2em rgba(0, 0, 0, 0.3),
+                0 0.3em 0.2em rgba(0, 0, 0, 0.3)
+
+    // text-shadow 3px 3px 0 rgba(#ddd, 20%)
+    //           -1px -1px 0 rgba(#ddd, 50%),
+    //            1px -1px 0 rgba(#ddd, 50%),
+    //            -1px 1px 0 rgba(#ddd, 50%),
+    //             1px 1px 0 rgba(#ddd, 50%)
 
   100%
-    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
-    //   0 0 0.2em rgba(0, 0, 0, 0.3),
-    //   0 0.5em 0.5em rgba(0, 0, 0, 0.3)
-    text-shadow 3px 3px 0 rgba(#ddd, 50%)
-              // -1px -1px 0 rgba(#ddd, 50%),
-              //  1px -1px 0 rgba(#ddd, 50%),
-              //  -1px 1px 0 rgba(#ddd, 50%),
-              //   1px 1px 0 rgba(#ddd, 50%)
+    text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
+                0 0 0.2em rgba(0, 0, 0, 0.3),
+                0 0.5em 0.5em rgba(0, 0, 0, 0.3)
+
+    // text-shadow 3px 3px 0 rgba(#ddd, 50%)
+    //           -1px -1px 0 rgba(#ddd, 50%),
+    //            1px -1px 0 rgba(#ddd, 50%),
+    //            -1px 1px 0 rgba(#ddd, 50%),
+    //             1px 1px 0 rgba(#ddd, 50%)
 
