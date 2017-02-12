@@ -86,6 +86,10 @@ gulp.task('stylus:all', () => {
 
 // ----------------------------------------------------------
 
+gulp.task('build', ['stylus:all'])
+
+// ----------------------------------------------------------
+
 gulp.task('default', ['stylus:all'], () => {
   gulp.watch(config.src, ['stylus'])
   gulp.watch(config.mixins, ['stylus:all'])
