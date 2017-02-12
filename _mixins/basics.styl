@@ -88,6 +88,30 @@ link-underline($underline-colour = currentColor, $visited-colour = #c60)
 
 // ----------------------------------------------------------------------------
 
+placeholder()
+  &::-webkit-input-placeholder
+    {block}
+
+  &:-moz-placeholder
+    {block}
+
+  &::-moz-placeholder
+    {block}
+
+  &:-ms-input-placeholder
+    {block}
+
+
+// ----------------------------------------------------------------------------
+
+selection($color, $background)
+  &::selection
+    color: $color
+    background: $background
+
+
+// ----------------------------------------------------------------------------
+
 base-core($text-font-family, $font-size = 14pt)
   @require url(web-font($text-font-family))
 

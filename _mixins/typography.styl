@@ -38,6 +38,21 @@ use-web-font($name, $variants = '400,400i,700,700i')
 
 // ----------------------------------------------------------------------------
 
+justify()
+  text-align justify
+  text-justify distribute
+
+  &:after
+    content ""
+    display inline-block
+    width 100%
+
+  > *
+    vertical-align top
+
+
+// ----------------------------------------------------------------------------
+
 syntax($colour, $styles...)
   if length($colour) > 1
     $styles = slice($colour, 1)

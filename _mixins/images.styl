@@ -1,0 +1,47 @@
+
+image-width($image)
+  return image-size($image)[0]
+
+image-height($image)
+  return image-size($image)[1]
+
+
+// ----------------------------------------------------------------------------
+
+image-natural-size($image)
+  $size = image-size($image)
+
+  width: $size[0]
+  height: $size[1]
+
+
+// ----------------------------------------------------------------------------
+
+image-box($image)
+  image-natural-size($image)
+
+  background-image-retina($image)
+  background-position center
+  background-repeat no-repeat
+
+
+// ----------------------------------------------------------------------------
+
+background-image-retina($image)
+  $dirname = dirname($image)
+  $ext = extname($image)
+  $filename = basename($image, $ext)
+
+  $image2x = pathjoin($dirname, $filename + '@2x' + $ext)
+  $image3x = pathjoin($dirname, $filename + '@3x' + $ext)
+
+  background-image url($image)
+  background-size image-size($image)[0] auto
+
+  if file-exists($image2x)
+    +respond-retina(1.5)
+      background-image url($image2x)
+
+  if file-exists($image3x)
+    +respond-retina(2.5)
+      background-image url($image3x)
