@@ -5,34 +5,33 @@ $ranges = to between from
 // ----------------------------------------------------------------------------
 
 is_breakpoint($v)
-  $v is defined and $v is a 'ident' and $v in $breakpoints
+  return $v is defined and $v is a 'ident' and $v in $breakpoints
 
 is_range($v)
-  $v is defined and $v is a 'ident' and $v in $ranges
+  return $v is defined and $v is a 'ident' and $v in $ranges
 
 
 // ----------------------------------------------------------------------------
 
 get-breakpoint($bp)
-  lookup('$breakpoint-' + $bp) if is_breakpoint($bp)
+  return lookup('$breakpoint-' + $bp) if is_breakpoint($bp)
 
 
 // ----------------------------------------------------------------------------
 
 mq($bp, $op)
   if $op is min
-    @media min-width(get-breakpoint($bp))
+    @media (min-width: get-breakpoint($bp))
       {block}
   else
-    @media max-width(get-breakpoint($bp) - 1px)
+    @media (max-width: get-breakpoint($bp) - 1px)
       {block}
 
 
 // ----------------------------------------------------------------------------
 
 respond($type, $bp, $bp2)
-  unless is_range($type)
-    error('Unknown respond range "' + $type + '"')
+  error('Unknown respond range ' + $type) unless is_range($type)
 
   @media only screen
     if $type is to
@@ -43,11 +42,10 @@ respond($type, $bp, $bp2)
       +mq($bp, min)
         +mq($bp2, max)
           {block}
-      // @media min-width(get-breakpoint($bp))
-      //   @media max-width(get-breakpoint($bp2) - 1px)
 
     else
       +mq($bp, min)
+        {block}
 
 
 // ----------------------------------------------------------------------------
@@ -69,5 +67,5 @@ respond-between($lower, $upper)
 
 respond-retina($ratio = 2)
   @media only screen
-    @media (min-device-pixel-ratio: $ratio), (min-resolution: $ratio * 96dpi), (min-resolution: unit($ratio, 'dppx')) {
+    @media (min-device-pixel-ratio: $ratio), (min-resolution: $ratio * 96dpi), (min-resolution: unit($ratio, 'dppx'))
       {block}

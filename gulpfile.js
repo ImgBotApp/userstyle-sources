@@ -32,9 +32,9 @@ const config = {
 
 // ----------------------------------------------------------
 
-const stylusBuild = lazypipe()
+const accordBuild = lazypipe()
   .pipe($.sourcemaps.init)
-  .pipe($.stylus, config.stylus)
+  .pipe($.accord, 'stylus', config.stylus)
   .pipe($.sourcemaps.write)
 
 // ----------------------------------------------------------
@@ -48,49 +48,28 @@ gulp.task('clean', () => {
 gulp.task('stylus', () => {
   gulp.src(config.src)
     .pipe($.newer(config.dest))
-    // .pipe($.sourcemaps.init())
-    // .pipe($.stylus({
-    //   import: [
-    //     config.stylus.import,
-    //     'nib',
-    //     'rupture'
-    //   ],
-    //   use: [
-    //     nib(),
-    //     rupture()
-    //   ]
-    // }))
-    // .pipe($.sourcemaps.write())
-    .pipe(stylusBuild())
+    .pipe(accordBuild())
     .pipe(gulp.dest(config.dest))
 })
 
 gulp.task('stylus:all', () => {
   gulp.src(config.src)
-    // .pipe($.sourcemaps.init())
-    // .pipe($.stylus({
-    //   import: [
-    //     config.stylus.import,
-    //     'nib',
-    //     'rupture'
-    //   ],
-    //   use: [
-    //     nib(),
-    //     rupture()
-    //   ]
-    // }))
-    // .pipe($.sourcemaps.write())
-    .pipe(stylusBuild())
+    .pipe(accordBuild())
     .pipe(gulp.dest(config.dest))
 })
 
-// ----------------------------------------------------------
-
-gulp.task('build', ['stylus:all'])
 
 // ----------------------------------------------------------
 
-gulp.task('default', ['stylus:all'], () => {
-  gulp.watch(config.src, ['stylus'])
-  gulp.watch(config.mixins, ['stylus:all'])
+gulp.task('build', [ 'stylus:all' ])
+
+// ----------------------------------------------------------
+
+gulp.task('watch', [ 'build' ], () => {
+  gulp.watch(config.src,    [ 'stylus' ])
+  gulp.watch(config.mixins, [ 'stylus:all' ])
 })
+
+// ----------------------------------------------------------
+
+gulp.task('default', [ 'watch' ])

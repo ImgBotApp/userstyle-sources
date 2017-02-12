@@ -5,26 +5,25 @@ $horizontal-sides = left right
 // ----------------------------------------------------------------------------
 
 is_side($v)
-  $v is defined and $v is a 'ident' and $v in top bottom left right
+  return $v is defined and $v is a 'ident' and $v in top bottom left right
 
 is_vertical_side($side)
-  $side in $vertical-sides if is_side($side)
+  return $side in $vertical-sides if is_side($side)
 
 is_horizontal_side($side)
-  $side in $horizontal-sides if is_side($side)
+  return $side in $horizontal-sides if is_side($side)
 
 axis($side)
   if is_vertical_side($side)
-    $vertical-sides
-  else  if is_horizontal_side($side)
-    $horizontal-sides
+    return $vertical-sides
+  else if is_horizontal_side($side)
+    return $horizontal-sides
 
 other_axis($side)
-  if
   if is_vertical_side($side)
-    $horizontal-sides
-  else  if is_horizontal_side($side)
-    $vertical-sides
+    return $horizontal-sides
+  else if is_horizontal_side($side)
+    return $vertical-sides
 
 scale($side)
   height if is_vertical_side($side)
