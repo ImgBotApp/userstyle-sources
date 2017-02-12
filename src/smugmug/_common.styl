@@ -1,0 +1,45 @@
+
+// $brand-pink                   = #f7cac9
+
+$brand-white                  = rgb(251, 251, 242)
+$brand-primary                = rgb(181, 255, 233)
+$brand-text                   = rgb(58, 51, 53)
+$brand-muted                  = rgb(60, 55, 68)
+$brand-pink                   = rgb(239, 81, 123)
+
+$title-font                   = Pacifico, sans-serif
+$body-font                    = Lato, 'Helvetica Neue', Arial, sans-serif
+
+$breakpoint                   = 670px
+
+// ----------------------------------------------------------------------------
+
+shadow-text($colour, $shadow-colour)
+  color $colour
+  text-shadow 1px 2px $shadow-colour
+
+// ----------------------------------------------------------------------------
+
+stroke($colour, $stroke-colour, $stroke-width = 0.2em)
+  if $colour is a color
+    -webkit-text-fill-color $colour
+
+  unless $stroke-colour is a color
+    $stroke-colour = invert($colour)
+
+  -webkit-text-stroke $stroke-width $stroke-colour
+
+// ----------------------------------------------------------------------------
+
+desktop()
+  @media screen and (min-width: ($breakpoint + 1px))
+    {block}
+
+mobile()
+  @media screen and (max-width: $breakpoint)
+    {block}
+
+// ----------------------------------------------------------------------------
+
+// @import url(https://fonts.googleapis.com/css?family=Pacifico);
+// @import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i);

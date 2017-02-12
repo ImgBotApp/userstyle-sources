@@ -10,6 +10,9 @@ hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=
     transition filter $fade-in-duration ease-in
 
 
+animate-bounce($bounce-duration=2s)
+  animation floating-text 2s ease-in-out alternate infinite
+
 // ------------------------------------------------------------
 
 .main-image
@@ -49,8 +52,6 @@ hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=
     absolute top 53% right 43%
     z-index 2
 
-    // font-family $title-font
-
     // --------------------------------------------------------
 
     .image-title
@@ -59,10 +60,6 @@ hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=
       font-size $title-size
       color $title-colour
 
-      // stroke($title-colour, $title-stroke-colour)
-      // text-shadow 1px 2px #eee
-
-      animation floating-text 2s ease-in-out alternate infinite
 
     // --------------------------------------------------------
 
@@ -75,10 +72,44 @@ hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=
       p
         margin 0 0 $spacing
 
+        .quote
+          &:before
+            content: "&ldquo;&nbsp;"
+          &:after
+            content: "&nbsp;&rdquo;"
+
       .quote-source
         font-size $subtitle-quote-size
         &:before
             content "– "
+
+  // ----------------------------------------------------------
+
+  @media all and (orientation: portrait)
+    background-position top 0px right 27%
+
+    .image-text
+      left 5px
+
+      .image-title
+        font-size 72px
+        text-align center
+        margin-bottom 4em
+
+      .image-subtitle
+        font-size: 24px
+
+
+  @media screen and (max-width: 1024px)
+    .image-text
+      top 50%
+
+      .image-title
+        font-size 72px
+
+  @media screen and (max-width: 1279px)
+    .image-title
+      text-align right
 
 
 // --------------------------------------------------
@@ -90,18 +121,18 @@ hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=
     //   0 0.3em 0.2em rgba(0, 0, 0, 0.3)
     transform translateY(0.1em)
     text-shadow 3px 3px 0 rgba(#ddd, 20%)
-              // -1px -1px 0 rgba(#ddd, 50%),
-              //  1px -1px 0 rgba(#ddd, 50%),
-              //  -1px 1px 0 rgba(#ddd, 50%),
-              //   1px 1px 0 rgba(#ddd, 50%)
+    // -1px -1px 0 rgba(#ddd, 50%),
+    //  1px -1px 0 rgba(#ddd, 50%),
+    //  -1px 1px 0 rgba(#ddd, 50%),
+    //   1px 1px 0 rgba(#ddd, 50%)
 
   100%
     // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
     //   0 0 0.2em rgba(0, 0, 0, 0.3),
     //   0 0.5em 0.5em rgba(0, 0, 0, 0.3)
     text-shadow 3px 3px 0 rgba(#ddd, 50%)
-              // -1px -1px 0 rgba(#ddd, 50%),
-              //  1px -1px 0 rgba(#ddd, 50%),
-              //  -1px 1px 0 rgba(#ddd, 50%),
-              //   1px 1px 0 rgba(#ddd, 50%)
+    // -1px -1px 0 rgba(#ddd, 50%),
+    //  1px -1px 0 rgba(#ddd, 50%),
+    //  -1px 1px 0 rgba(#ddd, 50%),
+    //   1px 1px 0 rgba(#ddd, 50%)
 
