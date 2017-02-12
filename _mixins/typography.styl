@@ -12,7 +12,7 @@ standard-type-settings()
 
 // ----------------------------------------------------------------------------
 
-web-font($name = 'Noto Sans', $variants = '400 400i 700 700i')
+get-web-font-url($name, $variants = '400,400i,700,700i')
   $family = unquote(replace(' ', '+', $name))
 
   if $variants is not false
@@ -22,6 +22,19 @@ web-font($name = 'Noto Sans', $variants = '400 400i 700 700i')
     $family += ':' + join(',', $variants)
 
   return 'https://fonts.googleapis.com/css?family=' + $family
+
+
+// ----------------------------------------------------------------------------
+
+use-web-font($name, $variants = '400,400i,700,700i')
+  $url = get-web-font-url($name, $variants)
+
+  @import url($url)
+
+  html
+  body
+    font-family $name, Arial, sans-serif
+
 
 // ----------------------------------------------------------------------------
 
