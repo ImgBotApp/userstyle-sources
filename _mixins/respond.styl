@@ -54,7 +54,7 @@ respond($low, $high)
 // ----------------------------------------------------------------------------
 
 respond-to($bp)
-  +respond(to, null, $bp)
+  +respond(null, $bp)
     {block}
 
 respond-from($bp)
@@ -77,7 +77,20 @@ respond-retina($ratio = 2)
     @media (min-device-pixel-ratio: $ratio), (min-resolution: $ratio * 96dpi), (min-resolution: unit($ratio, 'dppx'))
       {block}
 
+
+// ----------------------------------------------------------------------------
+
+$orientations = portrait landscape
+
 respond-orient($orientation)
-  if $orientation in portrait landscape
+  if $orientation in $orientations
     @media all and (orientation: $orientation)
       {block}
+
+respond-portrait()
+  @media all and (orientation: portrait)
+    {block}
+
+respond-landscape()
+  @media all and (orientation: landscape)
+    {block}
