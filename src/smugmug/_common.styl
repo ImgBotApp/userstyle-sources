@@ -32,11 +32,11 @@ stroke($colour, $stroke-colour, $stroke-width = 0.2em)
 // ----------------------------------------------------------------------------
 
 desktop()
-  @media screen and (min-width: ($breakpoint + 1px))
+  +respond-from md
     {block}
 
 mobile()
-  @media screen and (max-width: $breakpoint)
+  +respond-to xs
     {block}
 
 // ----------------------------------------------------------------------------

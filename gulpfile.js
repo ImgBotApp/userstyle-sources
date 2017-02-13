@@ -14,7 +14,7 @@ const rupture = require('rupture')
 
 const config = {
   // src: './npm/*.styl',
-  src: './src/**/!(_)*.styl',
+  src: 'src/**/!(_)*.styl',
   libs: './_mixins/*.styl',
   dest: './css',
   stylus: {
@@ -32,6 +32,33 @@ const config = {
 
 // ----------------------------------------------------------
 
+function getArgument(name) {
+  const argv = process.argv.slice(1)
+  console.log(argv.join('\n'))
+
+  const idx = argv.indexOf('--' + name)
+
+  if (idx !== -1) {
+    const nidx = idx + 1, nv = argv[nidx]
+
+    return nidx === argv.length || nv.startsWith('--')
+      ? true
+      : nv
+  }
+}
+
+const name = getArgument('single')
+console.log(`name: ${name}`)
+
+const src = name
+  ?  `src/${name}/!(_)*.styl`
+  : config.src
+
+console.log(`src: ${src}`)
+
+
+// ----------------------------------------------------------
+
 const accordBuild = lazypipe()
   .pipe($.sourcemaps.init)
   .pipe($.accord, 'stylus', config.stylus)
@@ -45,15 +72,26 @@ gulp.task('clean', () => {
 
 // ----------------------------------------------------------
 
+gulp.task('single', () => {
+  gulp.src(src)
+    .pipe($.newer(config.dest))
+    .pipe(accordBuild())
+    .pipe(gulp.dest(config.dest))
+})
+
+// ----------------------------------------------------------
+
 gulp.task('stylus', () => {
-  gulp.src(config.src)
+  gulp.src(src, { base: 'src' })
+    .pipe($.debug({ title: 'stylus | src' }))
     .pipe($.newer(config.dest))
     .pipe(accordBuild())
     .pipe(gulp.dest(config.dest))
 })
 
 gulp.task('stylus:all', () => {
-  gulp.src(config.src)
+  gulp.src(src, { base: 'src' })
+    .pipe($.debug({ title: 'stylus:all | src' }))
     .pipe(accordBuild())
     .pipe(gulp.dest(config.dest))
 })
