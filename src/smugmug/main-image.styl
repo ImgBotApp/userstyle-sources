@@ -1,138 +1,170 @@
+@import "./_common"
+
+
+$image = 'https://photos.smugmug.com/All-Folders/Wedding-/i-bZsmPQ3/0/X3/Lianne%20%281%20of%201%29-X3.jpg'
+
+$title-size               = 6rem
+$subtitle-size            = 2rem
+
+$title-colour             = #f2f3f4
+$subtitle-colour          = rgba($title-colour, 75%)
+
 
 // ------------------------------------------------------------
 
-hover-fade-to-colour($fade-in-duration=0.5s, $fade-out-duration=1.5s, $greyness=100%)
-  filter grayscale($greyness)
-  transition filter $fade-out-duration ease-out
-
-  &:hover
-    filter grayscale(0)
-    transition filter $fade-in-duration ease-in
-
-
-animate-bounce($bounce-duration=2s)
-  animation floating-text 2s ease-in-out alternate infinite
-
-// ------------------------------------------------------------
-
-.main-image
-  $image = 'https://photos.smugmug.com/All-Folders/Wedding-/i-bZsmPQ3/0/X3/Lianne%20%281%20of%201%29-X3.jpg'
-  $font = Pacifico, sans-serif
-
-  $fade-in-colour-duration = 0.5s
-  $fade-out-colour-duration = 2s
-
+figure.main-image
   position relative
-  height 100vh
+  overflow hidden
+  cursor pointer
 
   // To offset margin on .sm-page-widget .sm-page-widget-content
   margin -12px
 
-  background url($image) no-repeat center center scroll
-  background-size cover
+  img
+    display block
+    position relative
 
-  font-family $font
+    min-height 100vh
 
-  hover-fade-to-colour $fade-in-colour-duration $fade-out-colour-duration
+    width 100%
+    height auto
 
+  .image
+    display block
+    position relative
 
-  // ----------------------------------------------------------
+    height 100vh
 
-  .image-text
-    $title-size               = 80px
-    $subtitle-size            = $title-size / 3
-    $subtitle-quote-size      = 1.2em
+    background url($image) no-repeat center center scroll
+    background-size cover
 
-    $title-colour             = #ddd
-    $title-stroke-colour      = darken($title-colour, 50%)
-    $subtitle-colour          = rgba($title-colour, 75%)
+  figcaption
+    font-family 'Oleo Script Swash Caps', cursive
+    text-align left
+    backface-visibility hidden
 
-    $spacing                  = 0.15em
+    &:before
+    &:after
+      pointer-events none
 
-    absolute top 53% right 43%
-    z-index 2
+    &, & > a
+      absolute: top left
+      width 100%
+      height 100%
 
-    // --------------------------------------------------------
+    & > a
+      z-index 999
+      text-indent 200%
+      white-space nowrap
+      font-size 0
+      opacity 0
 
-    .image-title
-      margin 0 0 ($spacing * 2)
+    h1, p
+      margin 0
 
-      font-size $title-size
+    h1
+      absolute: bottom 25% right 38%
       color $title-colour
+      font-size $title-size
+      font-weight 400
 
+    div
+      absolute: bottom 15% right 38%
 
-    // --------------------------------------------------------
-
-    .image-subtitle
+      font-size 2rem
       text-align right
 
-      font-size $subtitle-size
+    p
       color $subtitle-colour
+      padding 0.5em 0
 
-      p
-        margin 0 0 $spacing
+      &.quote-source
+        font-size 0.9em
 
-        .quote
-          &:before
-            content: "&ldquo;&nbsp;"
-          &:after
-            content: "&nbsp;&rdquo;"
 
-      .quote-source
-        font-size $subtitle-quote-size
-        &:before
-            content "– "
+// ------------------------------------------------------------
 
-  // ----------------------------------------------------------
+figure.main-image.expand-slide
+  $fade-in-colour-duration = 0.5s
+  $fade-out-colour-duration = 2s
 
-  @media all and (orientation: portrait)
-    background-position top 0px right 27%
+  $title-move-in-duration = 2s
+  $title-move-out-duration = 0.5s
 
-    .image-text
-      left 5px
+  $subtitle-fade-in-duration = 0.5s
+  $subtitle-fade-out-duration = 2s
 
-      .image-title
-        font-size 72px
+  $subtitle-move-duration = 0.25s
+
+  background $bg = #2f3238
+
+
+  .image
+    backface-visibility hidden
+
+    +desktop()
+      filter grayscale(100%)
+      transition filter $fade-out-colour-duration ease-out, transform $duration
+
+  figcaption
+    text-align left
+
+    h1
+      transform translate3d(0, 0, 0)
+      transition transform $title-move-out-duration ease-in
+
+      // +mobile()
+      //   font-size 3rem
+
+    div
+      bottom 10%
+
+      opacity 0
+      transform translate3d(0, 0, 0)
+      transition opacity $subtitle-fade-out-duration ease-in-out, transform $subtitle-move-duration ease-in
+
+      // +mobile()
+      //   opacity 1
+      //   left 5%
+      //   right 5%
+      //   font-size 1rem
+      //   text-align center
+
+  +mobile()
+    .image
+      background-position 70% 50%
+
+    figcaption
+      h1
+        font-size 3rem
+        left 5%
+        right auto
+
+      div
+        opacity 1
+        left 5%
+        right 5%
+        font-size 1rem
         text-align center
-        margin-bottom 4em
-
-      .image-subtitle
-        font-size: 24px
 
 
-  @media screen and (max-width: 1024px)
-    .image-text
-      top 50%
+  &:hover
+    +desktop()
+      .image
+        filter grayscale(0)
+        transition filter $fade-in-colour-duration ease-in
 
-      .image-title
-        font-size 72px
+      figcaption
+        h1
+          transform translate3d(0, -15vh, 0)
+          transition transform $title-move-in-duration ease-out
 
-  @media screen and (max-width: 1279px)
-    .image-title
-      text-align right
+        div
+          opacity 1
+          transform translate3d(0, -5vh, 0)
+          transition opacity $subtitle-fade-in-duration ease-in-out, transform $subtitle-move-duration ease-in
 
-
-// --------------------------------------------------
-
-@keyframes floating-text
-  0%
-    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
-    //   0 0 0.2em rgba(0, 0, 0, 0.3),
-    //   0 0.3em 0.2em rgba(0, 0, 0, 0.3)
-    transform translateY(0.1em)
-    text-shadow 3px 3px 0 rgba(#ddd, 20%)
-    // -1px -1px 0 rgba(#ddd, 50%),
-    //  1px -1px 0 rgba(#ddd, 50%),
-    //  -1px 1px 0 rgba(#ddd, 50%),
-    //   1px 1px 0 rgba(#ddd, 50%)
-
-  100%
-    // text-shadow 0 0 0.5em rgba(255, 255, 255, 0.4),
-    //   0 0 0.2em rgba(0, 0, 0, 0.3),
-    //   0 0.5em 0.5em rgba(0, 0, 0, 0.3)
-    text-shadow 3px 3px 0 rgba(#ddd, 50%)
-    // -1px -1px 0 rgba(#ddd, 50%),
-    //  1px -1px 0 rgba(#ddd, 50%),
-    //  -1px 1px 0 rgba(#ddd, 50%),
-    //   1px 1px 0 rgba(#ddd, 50%)
-
+          &:first-child
+            transition-delay ($subtitle-move-duration * 0.5)
+          &:last-child
+            transition-delay $subtitle-move-duration
