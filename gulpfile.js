@@ -20,12 +20,10 @@ const config = {
   stylus: {
     import: [
       path.resolve('./_mixins'),
-      'nib',
-      'rupture'
+      'nib'
     ],
     use: [
-      nib(),
-      rupture()
+      nib()
     ]
   }
 }
