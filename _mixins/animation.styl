@@ -1,0 +1,6 @@
+
+hover-expand($duration=0.25s, $easing=ease-in-out, $scale-factor=1.25)
+  transition transform $duration $easing
+
+  &:hover
+    transform: scale3d($scale-factor, $scale-factor, 1)

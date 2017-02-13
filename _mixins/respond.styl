@@ -1,65 +1,72 @@
 
-$breakpoints = xs sm md lg
-$ranges = to between from
+$breakpoints = xs sm md lg xl
+
+$bp-ranges = {
+  xs: {
+    max: ($breakpoint-xs - 1px)
+  },
+  sm: {
+    min: $breakpoint-xs,
+    max: ($breakpoint-sm - 1px)
+  },
+  md: {
+    min: $breakpoint-sm,
+    max: ($breakpoint-md - 1px)
+  },
+  lg: {
+    min: $breakpoint-md,
+    max: ($breakpoint-lg - 1px)
+  },
+  xl: {
+    min: $breakpoint-lg
+  }
+}
 
 // ----------------------------------------------------------------------------
 
-is_breakpoint($v)
+-is-breakpoint($v)
   return $v is defined and $v is a 'ident' and $v in $breakpoints
 
-is_range($v)
-  return $v is defined and $v is a 'ident' and $v in $ranges
+-min-w($bp)
+  ($bp-ranges[$bp]).min
+
+-max-w($bp)
+  ($bp-ranges[$bp]).max
 
 
 // ----------------------------------------------------------------------------
 
-get-breakpoint($bp)
-  return lookup('$breakpoint-' + $bp) if is_breakpoint($bp)
+respond($low, $high)
+  $l = ($bp-ranges[$low]).min if -is-breakpoint($low)
+  $h = ($bp-ranges[$high]).max if -is-breakpoint($high)
 
-
-// ----------------------------------------------------------------------------
-
-mq($bp, $op)
-  if $op is min
-    @media (min-width: get-breakpoint($bp))
+  if -is-breakpoint($low) and -is-breakpoint($high)
+    @media only screen and (min-width: -min-w($low)) and (max-width: -max-w($high))
       {block}
-  else
-    @media (max-width: get-breakpoint($bp) - 1px)
+  else if -is-breakpoint($low)
+    @media only screen and (min-width: -min-w($low))
       {block}
-
-
-// ----------------------------------------------------------------------------
-
-respond($type, $bp, $bp2)
-  error('Unknown respond range ' + $type) unless is_range($type)
-
-  @media only screen
-    if $type is to
-      +mq($bp, max)
-        {block}
-
-    else if $type is between
-      +mq($bp, min)
-        +mq($bp2, max)
-          {block}
-
-    else
-      +mq($bp, min)
-        {block}
+  else if -is-breakpoint($high)
+    @media only screen and (max-width: -max-w($high))
+      {block}
 
 
 // ----------------------------------------------------------------------------
 
 respond-to($bp)
-  +respond(to, $bp)
+  +respond(to, null, $bp)
     {block}
 
 respond-from($bp)
-  +respond(from, $bp)
+  +respond($bp, null)
+    {block}
+
+respond-at($bp)
+  +respond($bp, $bp)
     {block}
 
 respond-between($lower, $upper)
-  +respond(between, $lower, $upper)
+  +respond($lower, $upper)
     {block}
 
 
@@ -68,4 +75,9 @@ respond-between($lower, $upper)
 respond-retina($ratio = 2)
   @media only screen
     @media (min-device-pixel-ratio: $ratio), (min-resolution: $ratio * 96dpi), (min-resolution: unit($ratio, 'dppx'))
+      {block}
+
+respond-orient($orientation)
+  if $orientation in portrait landscape
+    @media all and (orientation: $orientation)
       {block}
