@@ -1,0 +1,37 @@
+- var image = "https://photos.smugmug.com/All-Folders/Wedding-/i-bZsmPQ3/0/X3/Lianne%20%281%20of%201%29-X3.jpg"
+
+- var placeholder = "http://lorempixel.com/300/300/?random="
+- var idx = 0
+
+mixin tile(text)
+  .tile-wrapper
+    .tile
+      a.tile-content(href="#", itemprop="url")
+        img.image(src=placeholder + (++idx), alt=text, itemprop="image")
+        .tile-info
+          .tile-info-text
+            p.tile-title(title=text, itemprop="title")= text
+
+#size-float= ''
+
+.content
+  .widget-html
+    figure.main-image.expand-slide
+      img(src=image, alt="Rachel Joy Otterway - Visual Chronicler Extraordinaire")
+      figcaption
+        h1.image-title Rachel Joy Otterway
+
+        div
+          p.quote Natural, elegant and timeless
+          p.quote-source Vogue, 2016
+
+        a(href="#") View portfolio
+
+  .widget-text
+    p
+      | "Rachel is the perfect photography partner for our business. As a consultancy the way we present our business is of utmost importance - so we always need to appear professional and trustworthy, but at the same time relaxed and easy to work with. Rachel's creative ideas and execution are always really effective in achieving this, and her flexibility in working style and availability makes her a pleasure to work with."
+
+  .widget-image-grid
+    .tile-list
+      each t in ["Wedding Photographer", "Portfolio", "Lifestyle", "About Rachel"]
+        +tile(t)
