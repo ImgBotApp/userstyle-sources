@@ -1,0 +1,42 @@
+@import './_common'
+
+#does-not-exist
+  width 1800px
+
+  +respond-at(xs)
+    width 240px
+
+  +respond-between(sm, md)
+    width 800px
+
+  +respond-from(lg)
+    width 1200px
+
+  +respond-to(md)
+    width 600px
+
+  +mobile()
+    &:after
+      content: 'mobile'
+
+  +tablet()
+    &:after
+      content: 'tablet'
+
+  +desktop()
+    &:after
+      content: 'desktop'
+
+
+  +respond-retina(2)
+    width 50vw
+
+  &:before
+    +respond-orient(landscape)
+      content: 'respond-orient!'
+
+    +respond-portrait()
+      content: 'portrait'
+
+    +respond-landscape()
+      content: 'landscape'

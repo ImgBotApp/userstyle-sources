@@ -30,16 +30,16 @@ stroke($colour, $stroke-colour, $stroke-width = 0.2em)
 // ----------------------------------------------------------------------------
 
 desktop()
-  // +respond-from(md)
-  @media screen and (min-width: 960px)
+  +respond-from(md)
+  // @media screen and (min-width: 960px)
     {block}
 
 tablet()
-  // +respond-at(sm)
-  @media screen and (min-width: 600px) and (max-width: 959px)
+  +respond-at(sm)
+  // @media screen and (min-width: 600px) and (max-width: 959px)
     {block}
 
 mobile()
-  // +respond-to(xs)
-  @media screen and (max-width: 599px)
+  +respond-to(xs)
+  // @media screen and (max-width: 599px)
     {block}

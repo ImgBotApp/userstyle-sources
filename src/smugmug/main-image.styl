@@ -113,9 +113,6 @@ figure.main-image.expand-slide
       transform translate3d(0, 0, 0)
       transition transform $title-move-out-duration ease-in
 
-      // +mobile()
-      //   font-size 3rem
-
     div
       bottom 10%
 
@@ -123,12 +120,6 @@ figure.main-image.expand-slide
       transform translate3d(0, 0, 0)
       transition opacity $subtitle-fade-out-duration ease-in-out, transform $subtitle-move-duration ease-in
 
-      // +mobile()
-      //   opacity 1
-      //   left 5%
-      //   right 5%
-      //   font-size 1rem
-      //   text-align center
 
   +mobile()
     .image
@@ -147,6 +138,14 @@ figure.main-image.expand-slide
         font-size 1rem
         text-align center
 
+  +tablet()
+    .image
+      background-position 70% 50%
+
+    figcaption
+      h1
+        left 10%
+        right 30%
 
   &:hover
     +desktop()
