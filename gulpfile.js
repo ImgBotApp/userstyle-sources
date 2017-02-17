@@ -13,15 +13,15 @@ const nib = require('nib')
 // ----------------------------------------------------------
 
 const config = {
-  src: 'src/**/!(_)*.styl',
+  src: './src/!(_)**/!(_)*.styl',
   mixins: [
-    './_mixins/*.styl',
-    './src/**/_*.styl'
+    './src/_mixins/*.styl',
+    './src/!(_)**/_*.styl'
   ],
   dest: './css',
   stylus: {
     import: [
-      path.resolve('./_mixins'),
+      path.resolve('./src/_mixins'),
       'nib'
     ],
     use: [
@@ -33,7 +33,7 @@ const config = {
 const name = argv.s || argv.single
 
 if (name) {
-  config.src = `src/${name || '**'}/!(_)*.styl`
+  config.src = `src/${name}/!(_)*.styl`
   config.mixins[1] = `src/${name}/_*.styl`
 }
 
