@@ -3,11 +3,13 @@
 
 $image = 'https://photos.smugmug.com/All-Folders/Wedding-/i-bZsmPQ3/0/X3/Lianne%20%281%20of%201%29-X3.jpg'
 
-$title-size               = 6rem
+$title-size               = 5rem
 $subtitle-size            = 2rem
+$quote-size               = 2.25rem
 
 $title-colour             = #f2f3f4
-$subtitle-colour          = rgba($title-colour, 75%)
+$subtitle-colour          = $title-colour // rgba($title-colour, 75%)
+$quote-colour             = $title-colour
 
 
 // ------------------------------------------------------------
@@ -28,6 +30,8 @@ figure.main-image
 
     background url($image) no-repeat center center scroll
     background-size cover
+    // background-position 50% 60%
+
     backface-visibility hidden
 
   figcaption
@@ -35,124 +39,88 @@ figure.main-image
     text-align left
     backface-visibility hidden
 
-    &:before
-    &:after
-      pointer-events none
+    // &:before
+    // &:after
+    //   pointer-events none
 
-    &, & > a
-      absolute: top left
-      width 100%
-      height 100%
+    // &, & > a
+    absolute: top left
+    width 100%
+    height 100%
 
-    & > a
-      z-index 999
-      text-indent 200%
-      white-space nowrap
-      font-size 0
-      opacity 0
+    // & > a
+    //   z-index 999
+    //   text-indent 200%
+    //   white-space nowrap
+    //   font-size 0
+    //   opacity 0
 
     h1, p
       margin 0
+      line-height 1.1em
 
-    h1
-      absolute: bottom 25% right 38%
-      color $title-colour
-      font-size $title-size
-      font-weight 400
+    .title
+      absolute: top 50% left 18%
+      text-align center
 
-    div
-      absolute: bottom 15% right 38%
+      h1, p
+        color $title-colour
 
-      font-size 2rem
-      text-align right
+      h1
+        font-size $title-size
+        font-weight 400
+        padding-bottom 1rem
 
-    p
-      color $subtitle-colour
-      padding 0.5em 0
+      p
+        font-family Lato, sans-serif
+        font-size $subtitle-size
 
-      &.quote-source
-        font-size 0.9em
+    .vogue
+      absolute: top 80% left 0 right 0
+      font-size $quote-size
+      text-align center
 
+      p
+        color $quote-colour
+        font-size 1em
 
-// ------------------------------------------------------------
-
-figure.main-image.expand-slide
-  $fade-in-colour-duration = 0.5s
-  $fade-out-colour-duration = 2s
-
-  $title-move-in-duration = 2s
-  $title-move-out-duration = 0.5s
-
-  $subtitle-fade-in-duration = 0.5s
-  $subtitle-fade-out-duration = 2s
-
-  $subtitle-move-duration = 0.25s
-
-  background $bg = #2f3238
-
-  .image
-    +desktop()
-      filter grayscale(100%)
-      transition filter $fade-out-colour-duration ease-out, transform $duration
-
-  figcaption
-    text-align left
-
-    h1
-      transform translate3d(0, 0, 0)
-      transition transform $title-move-out-duration ease-in
-
-    div
-      bottom 10%
-
-      opacity 0
-      transform translate3d(0, 0, 0)
-      transition opacity $subtitle-fade-out-duration ease-in-out, transform $subtitle-move-duration ease-in
-
+        &.quote-source
+          font-size 0.8em
 
   +mobile()
     .image
       background-position 70% 50%
+      height 90vh
 
     figcaption
-      h1
-        font-size 3rem
-        left 5%
-        right auto
+      .title
+        top 52%
+        left 0
+        right 40%
 
-      div
-        opacity 1
-        left 5%
-        right 5%
-        font-size 1rem
-        text-align center
+        h1
+          font-size ($title-size / 2)
+
+        p
+          font-size ($subtitle-size / 2)
+
+      .vogue
+        top 85%
+        font-size ($quote-size / 1.8)
 
   +tablet()
     .image
-      background-position 70% 50%
+      background-position 64% 50%
 
     figcaption
-      h1
-        left 10%
+      .title
+        left 0
         right 30%
 
-  &:hover
-    +desktop()
-      .image
-        filter grayscale(0)
-        transition filter $fade-in-colour-duration ease-in
+      .vogue
+        font-size ($quote-size * 2 / 3)
 
-      figcaption
-        h1
-          transform translate3d(0, -15vh, 0)
-          transition transform $title-move-in-duration ease-out
-
-        div
-          opacity 1
-          transform translate3d(0, -5vh, 0)
-          transition opacity $subtitle-fade-in-duration ease-in-out, transform $subtitle-move-duration ease-in
-
-          &:first-child
-            transition-delay ($subtitle-move-duration * 0.5)
-          &:last-child
-            transition-delay $subtitle-move-duration
+  +respond-at(md)
+    figcaption
+      .title
+        left 4%

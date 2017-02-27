@@ -1,0 +1,87 @@
+
+
+// ------------------------------------------------------------
+
+figure.main-image.expand-slide
+  $fade-in-colour-duration = 0.5s
+  $fade-out-colour-duration = 2s
+
+  $title-move-in-duration = 2s
+  $title-move-out-duration = 0.5s
+
+  $subtitle-fade-in-duration = 0.5s
+  $subtitle-fade-out-duration = 2s
+
+  $subtitle-move-duration = 0.25s
+
+  background $bg = #2f3238
+
+
+  .image
+    backface-visibility hidden
+
+    +desktop()
+      filter grayscale(100%)
+      transition filter $fade-out-colour-duration ease-out, transform $duration
+
+  figcaption
+    text-align left
+
+    h1
+      transform translate3d(0, 0, 0)
+      transition transform $title-move-out-duration ease-in
+
+    div
+      bottom 10%
+
+      opacity 0
+      transform translate3d(0, 0, 0)
+      transition opacity $subtitle-fade-out-duration ease-in-out, transform $subtitle-move-duration ease-in
+
+
+  +mobile()
+    .image
+      background-position 70% 50%
+
+    figcaption
+      h1
+        font-size 3rem
+        left 5%
+        right auto
+
+      div
+        opacity 1
+        left 5%
+        right 5%
+        font-size 1rem
+        text-align center
+
+  +tablet()
+    .image
+      background-position 70% 50%
+
+    figcaption
+      h1
+        left 10%
+        right 30%
+
+  &:hover
+    +desktop()
+      .image
+        filter grayscale(0)
+        transition filter $fade-in-colour-duration ease-in
+
+      figcaption
+        h1
+          transform translate3d(0, -15vh, 0)
+          transition transform $title-move-in-duration ease-out
+
+        div
+          opacity 1
+          transform translate3d(0, -5vh, 0)
+          transition opacity $subtitle-fade-in-duration ease-in-out, transform $subtitle-move-duration ease-in
+
+          &:first-child
+            transition-delay ($subtitle-move-duration * 0.5)
+          &:last-child
+            transition-delay $subtitle-move-duration
