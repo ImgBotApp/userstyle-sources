@@ -20,15 +20,6 @@ figure.main-image
   // To offset margin on .sm-page-widget .sm-page-widget-content
   margin -12px
 
-  img
-    display block
-    position relative
-
-    min-height 100vh
-
-    width 100%
-    height auto
-
   .image
     display block
     position relative
@@ -37,6 +28,7 @@ figure.main-image
 
     background url($image) no-repeat center center scroll
     background-size cover
+    backface-visibility hidden
 
   figcaption
     font-family 'Oleo Script Swash Caps', cursive
@@ -98,10 +90,7 @@ figure.main-image.expand-slide
 
   background $bg = #2f3238
 
-
   .image
-    backface-visibility hidden
-
     +desktop()
       filter grayscale(100%)
       transition filter $fade-out-colour-duration ease-out, transform $duration
