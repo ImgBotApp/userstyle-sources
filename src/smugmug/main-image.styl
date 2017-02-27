@@ -11,6 +11,9 @@ $title-colour             = #f2f3f4
 $subtitle-colour          = $title-colour // rgba($title-colour, 75%)
 $quote-colour             = $title-colour
 
+$fade-in-colour-duration = 0.5s
+$fade-out-colour-duration = 2s
+
 
 // ------------------------------------------------------------
 
@@ -90,23 +93,24 @@ figure.main-image
   +mobile()
     .image
       background-position 70% 50%
-      height 90vh
+      height 82vh
 
     figcaption
       .title
-        top 52%
+        top 50%
         left 0
         right 40%
 
         h1
           font-size ($title-size / 2)
+          padding-bottom 0.5rem
 
         p
-          font-size ($subtitle-size / 2)
+          font-size 0.9rem
 
       .vogue
         top 85%
-        font-size ($quote-size / 1.8)
+        font-size 1rem
 
   +tablet()
     .image
@@ -124,3 +128,14 @@ figure.main-image
     figcaption
       .title
         left 4%
+
+  +desktop()
+    .image
+      filter grayscale(100%)
+      transition filter $fade-out-colour-duration ease-out
+
+    &:hover
+      .image
+        filter grayscale(0%)
+        transition filter $fade-in-colour-duration ease-in
+
