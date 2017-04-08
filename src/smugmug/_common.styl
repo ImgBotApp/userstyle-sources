@@ -10,6 +10,29 @@ $brand-pink                   = rgb(239, 81, 123)
 
 // ----------------------------------------------------------------------------
 
+row-context($row-id, $widget-id = null)
+  if $widget-id
+    .sm-page-layout-row[data-layout-row = {$row-id}]
+      +widget-context($widget-id)
+        {block}
+  else
+    .sm-page-layout-row[data-layout-row = {$row-id}]
+      {block}
+
+
+// ----------------------------------------------------------------------------
+
+widget-context($widget-id)
+  $widget-prefix = 'sm-page-widget'
+  $full-widget-prefix = $widget-prefix + '-' + $widget-id
+
+  .sm-page-layout-region.sm-page-layout-region-center
+    .{$widget-prefix}.{$full-widget-prefix}
+      +prefix-classes($full-widget-prefix + '-')
+        {block}
+
+// ----------------------------------------------------------------------------
+
 shadow-text($colour, $shadow-colour)
   color $colour
   text-shadow 1px 2px $shadow-colour
@@ -25,6 +48,19 @@ stroke($colour, $stroke-colour, $stroke-width = 0.2em)
     $stroke-colour = invert($colour)
 
   -webkit-text-stroke $stroke-width $stroke-colour
+
+
+// ----------------------------------------------------------------------------
+
+// .quote
+//   &:before
+//     content: "“ "
+//   &:after
+//     content: " ”"
+
+// .quote-source
+//   &:before
+//       content "– "
 
 
 // ----------------------------------------------------------------------------
