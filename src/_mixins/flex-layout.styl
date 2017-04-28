@@ -3,32 +3,35 @@
 
 // ----------------------------------------------------------------------------
 
-layout()
-  display flex
+layout($direction = row, $wrap = no-wrap)
+  display flex !important
+
+  flex-direction $direction
+  flex-wrap $wrap
 
   justify-content space-between
+  align-items stretch
 
   > *
     order 0
-    flex-grow 0
-    flex-shrink
-
+    flex-grow 1
+    flex-shrink 0
     flex-basis auto
-    width: auto
-    max-width: 100%
 
-    float: none
+    width auto
+    max-width 100%
+    float none
+    clear none
 
 
 layout-row()
-  flex-direction row
+  layout()
+
 
 layout-column()
+  layout()
   flex-direction column
 
-
-layout-no-wrap()
-  flex-wrap no-wrap
 
 layout-wrap()
   flex-wrap wrap
@@ -44,6 +47,7 @@ layout-margin($margin = 0.5em)
   > *
     margin ($margin / 2)
 
+
 layout-padding($padding = 0.5em)
   padding $padding
 
@@ -58,17 +62,21 @@ layout-item-last()
   order 1
 
 
-flex-fixed()
+flex-fixed($size)
   flex-grow 0
   flex-shrink 0
+  if $size
+    flex-basis $size
 
 flex-noshrink()
   flex-shrink 0
+
 
 flex-auto()
   flex-grow 1
   flex-shrink 1
   flex-basis auto
+
 
 flex($val)
   $fixed-size-units = px pt em rem
