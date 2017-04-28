@@ -1,0 +1,25 @@
+@import "./_common"
+
+// ----------------------------------------------------------------------------
+
+// $shadow-colour = darken($brand-white, 25%)
+$shadow-colour = mix($brand-white, $brand-muted)
+$shadow-opacity = 50%
+$shadow-size = 0.02em
+
+$shadow
+  text-shadow $shadow-size (2 * $shadow-size) (2 * $shadow-size) rgba($shadow-colour, $shadow-opacity)
+
+
++row-context('8B', 'logo')
+  .text
+    font-size 120px
+
+  .subtext
+    font-size 45px
+
++widget-context('logo')
+  .text
+  .subtext
+    @extend $shadow
+

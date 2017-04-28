@@ -4,6 +4,7 @@ const path = require('path')
 const gulp = require('gulp')
 const $ = require('gulp-load-plugins')()
 const lazypipe = require('lazypipe')
+const combine = require('stream-combiner')
 
 const argv = require('yargs').argv
 const del = require('del')
@@ -40,6 +41,13 @@ if (name) {
 
 // ----------------------------------------------------------
 
+function logError(error) {
+  $.util.log($.util.colors.bgRed(error.message))
+  // this.emit('end')
+}
+
+// ----------------------------------------------------------
+
 // function getArgument(name) {
 //   const argv = process.argv.slice(1)
 
@@ -56,10 +64,17 @@ if (name) {
 
 // ----------------------------------------------------------
 
-const accordBuild = lazypipe()
-  .pipe($.sourcemaps.init)
-  .pipe($.accord, 'stylus', config.stylus)
-  .pipe($.sourcemaps.write)
+const accordBuild = function() {
+  return combine(
+    $.sourcemaps.init(),
+    $.accord('stylus', config.stylus).on('error', logError),
+    $.sourcemaps.write()
+  )
+}
+
+  // .pipe($.sourcemaps.init)
+  // .pipe($.accord, 'stylus', config.stylus)
+  // .pipe($.sourcemaps.write)
 
 
 // ----------------------------------------------------------

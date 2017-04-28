@@ -17,39 +17,27 @@ body
   color $brand-text
   background-color $brand-white
 
-  height auto
-  overflow-x hidden
+  // height auto
+  // overflow-x hidden
 
-  +desktop()
-    margin-top $nav-bar-height !important
+  // +desktop()
+  //   margin-top $nav-bar-height !important
 
-p
-  font-size 14pt
-  line-height 1.44em !important
-
-// ----------------------------------------------------------------------------
-
-.quote
-  &:before
-    content: "“ "
-  &:after
-    content: " ”"
-
-.quote-source
-  &:before
-      content "– "
+// p
+//   font-size 14pt
+//   line-height 1.44em !important
 
 
 // ----------------------------------------------------------------------------
 
 
-.sm-page-layout-region.sm-page-layout-region-header
+.sm-page-layout-region-header
   +desktop()
     fixed: top 0 left 0 right 0
     height $nav-bar-height
     z-index 99
 
-    background-color $nav-bar-background
+    // background-color $nav-bar-background
     box-shadow 0 0 12px 4px $nav-bar-shadow
 
     .sm-page-layout-region-top
@@ -79,8 +67,9 @@ p
 
 // ----------------------------------------------------------------------------
 
-.sm-page-layout-region.sm-page-layout-region-center
-  .sm-page-widget.sm-page-widget-text
+.sm-page-layout-region-center
+  // .sm-page-widget.sm-page-widget-text
+  +widget-context('text')
     width 60%
     margin 2em auto
 
@@ -88,16 +77,22 @@ p
       margin 8px
       width auto
 
-  .sm-page-widget.sm-page-widget-sociallinks
-    .sm-social-links-large[data-layout="row"]
+  +widget-context('sociallinks')
+    +desktop()
       li
         hover-expand()
         padding-right 8px
 
+  // .sm-page-widget.sm-page-widget-sociallinks
+  //   .sm-social-links-large[data-layout="row"]
+  //     li
+  //       hover-expand()
+  //       padding-right 8px
+
 
 // ----------------------------------------------------------------------------
 
-.sm-page-layout-region.sm-page-layout-region-footer
+.sm-page-layout-region-footer
   p
     color $brand-muted
     font-size 0.9em
@@ -105,17 +100,25 @@ p
 
 // ----------------------------------------------------------------------------
 
-.sm-user-ui
-  .sm-tiles-grid
-    text-align center
+// Slideshow
 
-  .sm-tile-content
-    > .sm-tile-info
-      background-color $tile-overlay-background
+.sm-tiles-fit.sm-tile-single.sm-tile-center
+  .sm-tile-wrapper
+    min-width 100% !important
+    margin-top -80px
 
-      .sm-tile-title
-        font-size $tile-text-size
-        shadow-text $tile-text-colour $tile-text-shadow-colour
+
+// .sm-user-ui
+//   .sm-tiles-grid
+//     text-align center
+
+//   .sm-tile-content
+//     > .sm-tile-info
+//       background-color $tile-overlay-background
+
+//       .sm-tile-title
+//         font-size $tile-text-size
+//         shadow-text $tile-text-colour $tile-text-shadow-colour
 
 // ----------------------------------------------------------------------------
 
