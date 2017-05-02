@@ -1,11 +1,4 @@
 
-fs($size)
-  font-family inherit
-  font-size $size
-  line-height 1.44em
-
-// ----------------------------------------------------------------------------
-
 $link-colour = #37f
 $link-visited-colour = #c60
 $comment-link-colour = #5a5aa0
@@ -13,49 +6,94 @@ $comment-link-colour = #5a5aa0
 $reply-background-colour = #5af
 $comment-head-underline-colour = #888
 
+$font-size = 14pt
+
+// $up-arrow = url(data:image/svg+xml;charset=UTF-8,%3Csvg%20version=%221.1%22%20xmlns=%22http://www.w3.org/2000/svg%22%20xmlns:xlink=%22http://www.w3.org/1999/xlink%22%20width=%22963px%22%20height=%22963px%22%20viewBox=%220%200%20963%20963%22%20xml:space=%22preserve%22%20class=%22svg-arrow%22%3E%3Cg%3E%3Cpath%20d=%22M481.5,963C747.4,963,963,747.4,963,481.5C963,215.6,747.4,0,481.5,0C215.6,0,0,215.6,0,481.5C0,747.4,215.6,963,481.5,963%20z%20M543.3,271.4l233.2,213.401c19.4,17.799,29.2,42.1,29.2,66.398c0,21.701-7.8,43.5-23.601,60.701%20C748.5,648.6,691.6,651.1,654.9,617.5L482.6,459.8L305.3,622.4c-36.6,33.6-93.6,31.1-127.2-5.5s-31.1-93.6,5.5-127.201L421.7,271.4%20C456.2,239.9,508.9,239.9,543.3,271.4z%22/%3E%3C/g%3E%3C/svg%3E)
+// $down-arrow = url(data:image/svg+xml;charset=UTF-8,%3Csvg%20version=%221.1%22%20xmlns=%22http://www.w3.org/2000/svg%22%20xmlns:xlink=%22http://www.w3.org/1999/xlink%22%20width=%22963px%22%20height=%22963px%22%20viewBox=%220%200%20963%20963%22%20xml:space=%22preserve%22%20class=%22svg-arrow%22%3Cg%3E%3Cpath%20d=%22M481.5,963C747.4,963,963,747.4,963,481.5C963,215.6,747.4,0,481.5,0C215.6,0,0,215.6,0,481.5C0,747.4,215.6,963,481.5,963%20z%20M178.1,346.2c33.6-36.6,90.5-39.1,127.2-5.5l177.4,162.6L655.1,345.5c36.7-33.6,93.601-31,127.2,5.6%20c33.601,36.7,31,93.6-5.6,127.2L543.3,691.7c-17.2,15.7-39,23.6-60.8,23.6s-43.6-7.899-60.8-23.7l-238-218.3%20C147,439.7,144.5,382.8,178.1,346.2z%22/%3E%3C/g%3E%3C/svg%3E)
+
 // ----------------------------------------------------------------------------
 
+fs($size = 1rem)
+  font $size/1.44em Roboto, Arial, sans-serif
+  // font-family 'Roboto Slab', Arial, sans-serif
+  // font-size $size
+  // line-height 1.44em
 
-use-web-font('Merriweather Sans')
 
+fade-in($duration = 0.2s)
+  opacity 0.7
+  transition opacity $duration ease-in-out
+
+  &:hover
+    opacity 1
+
+// ----------------------------------------------------------------------------
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700')
+
+html
 body
   standard-type-settings()
-  font-size 12pt
+
+body
+  font-size $font-size
   line-height 1.44em
 
-p
-.default
 .pagetop
 .title
-.comment
-  fs 1rem
-
+.default
 .comhead
 .subtext
-  fs 11pt
+.reply
+.comment
+  fs()
 
+
+.comhead
   a.hnuser
     color $link-colour !important
+    font-weight bold
     text-decoration none !important
+    fade-in()
+
+    // font
+    //   relative left -1.25em
+
+  .age a:hover
+    text-decoration none
 
 .default
+  relative
+
   > :first-child
-    margin-bottom 4px !important
+    margin-top 0 !important
+    margin-bottom 0 !important
     border-bottom solid 1px $comment-head-underline-colour
+    padding 0 0 0.25em
 
   > br
     display none
 
   .reply
-    p
-      margin-top 4px
+    height 0px
 
     a
-      padding 0 2px
-      fs 11pt
+      display block
+      absolute top right
+
       text-decoration none !important
-      color white !important
-      background-color $reply-background-colour !important
+      text-transform uppercase
+
+      color $link-colour !important
+      font-weight bold
+      font-size 0.9rem
+
+      fade-in()
+      transition: transform 0.2s ease-in-out
+
+      &:hover
+        transform: scale3d(1.1, 1.1, 1)
+
 
 .title
   > a:visited
@@ -67,28 +105,66 @@ p
     font-weight bold
 
 .comment
+  padding 0.25rem 0
+
+  .c00
+    color #121314 !important
+
   .cce
+  .c73
     color inherit !important
     opacity 0.8
 
-  a
-    link-colour($link-colour, $link-visited-colour)
+  > span
+    > a
+    > p a
+      // link-colour($link-colour, $link-visited-colour)
+      link-underline($link-colour, $link-visited-colour)
+
+.svg-arrow
+  fill blue
 
 .comtr
   td.votelinks
     position relative
     width 0
 
-    > center
-      position absolute
+    > center a
+      display flex
+      absolute top 0.25em left 0.25em
+      width $font-size
+      height @width
+
+      background-size 10pt
+      background-position 50% 50%
+      background-repeat no-repeat
+
+      &.nosee
+        visibility visible
+        opacity 0.25
+
+      &[id^=up]
+        background-image embedurl("../_images/im-arrow-up.svg", "utf8")
+        .svg-up
+          fill #080
+
+      &[id^=down]
+        // background-image embedurl("arrow_down.svg", "utf8")
+        background-image embedurl("../_images/im-arrow-down.svg", "utf8")
+        .svg-down
+          fill red
+
+      .nosee
+        visibility visible
+
+      .votearrow
+        display none
+        // margin auto
+        // transform scale3d(1.2, 1.2, 1)
 
   .comhead
-    padding-left 16px
+    padding-left 1.25em
 
-.votearrow
-  width 12px
-  height 12px
-  margin 5px 2px 4px 4px
 
 tr.spacer
   height 10px !important
