@@ -61,6 +61,7 @@
 .blob-code-deletion
   .x
     background-color $code-word-removal !important
+    color $code-text-muted
 
 .blob-num-deletion
 .blob-code-deletion
@@ -76,6 +77,11 @@
     transition-duration 2s
     transition-function ease-in-out
 */
+
+.blob-code-hunk
+.blob-code-expandable
+  // background-color tint($code-bright-background, 50%) !important
+  background linear-gradient(to right, rgba(65,65,65,0.5) 0%, rgba(64,32,64,0.25) 50%, rgba(32,32,32,1) 100%)
 
 .blob-expanded
   .blob-num
