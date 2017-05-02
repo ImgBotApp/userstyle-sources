@@ -67,22 +67,30 @@ link-colour($colour, $visited = $colour, $underline = hover)
 
 link-underline($underline-colour = currentColor, $visited-colour = #c60)
   // color: $underline-colour
-  color: inherit
+
+  &
+  &:link
+    color: inherit
+
   padding-bottom: 1px
   border-bottom-style: solid
   border-bottom-width: 2px
   border-bottom-color: rgba($underline-colour, 0.5)
 
+  &:visited
+    border-bottom-color: rgba($visited-colour, 0.5)
+
+  &
+  &:hover
+  &:link
+  &:visited
+    text-decoration: none
+
   &:hover
     color: $underline-colour
-    border-bottom-color: $underline-colour
-    text-decoration: none
     transition: all ease-in 0.25s
 
-  &:visited
-    border-bottom-color: $visited-colour
-
-    &:hover
+    &:visited
       color: $visited-colour
 
 
@@ -135,6 +143,10 @@ base-core($text-font-family, $font-size = 14pt)
 
     // -webkit-font-smoothing: antialiased
     text-rendering: optimizeLegibility
+
+    image-rendering: -webkit-optimize-contrast
+    -ms-interpolation-mode: nearest-neighbor
+    image-rendering: crisp-edges
 
     cursor: auto !important
 
