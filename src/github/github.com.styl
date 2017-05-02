@@ -2,6 +2,14 @@
 
 // ----------------------------------------------------------------------------
 
+fix-clearfix()
+  &::before
+  &::after
+    display none
+
+
+// ----------------------------------------------------------------------------
+
 body
   standard-type-settings()
 
@@ -89,16 +97,22 @@ span.counter
 /* Widen content */
 
 .container
-  width 80vw !important
+  min-width 1280px
+  // width 80vw !important
 
 .repository-with-sidebar
-  display flex !important
+  layout()
+  // display flex !important
 
   .repository-sidebar
-    order 1
-    flex 0 0 170px
+    layout-item-last()
+
+    flex-fixed(170px)
     margin-left 20px !important
-    float none !important
+
+    // order 1
+    // flex 0 0 170px
+    // float none !important
 
   .repository-content
     order 0
@@ -179,18 +193,22 @@ tr
 
 /* Discussions */
 #discussion_bucket
-  display flex !important
+  // display flex !important
+  layout()
+  fix-clearfix()
 
   .discussion-sidebar
-    order 1
-    flex 0 0 150px
+    // order 1
+    flex-fixed(200px)
+    layout-item-last()
+    // flex 0 0 200px
     margin-left 20px !important
-    float none !important
+    // float none !important
 
-  .discussion-timeline
-    order 0
-    flex 1 1 auto
-    float none !important
+  // .discussion-timeline
+  //   order 0
+  //   flex 1 1 auto
+  //   float none !important
 
 // ----------------------------------------------------------------------------
 
