@@ -10,7 +10,6 @@ const argv = require('yargs').argv
 const del = require('del')
 const nib = require('nib')
 
-
 // ----------------------------------------------------------
 
 const config = {
@@ -27,7 +26,12 @@ const config = {
     ],
     use: [
       nib()
-    ]
+    ],
+    url: {
+      name: 'url',
+      limit: false
+      // paths: [ path.resolve('./src/_images') ]
+    }
   }
 }
 
@@ -38,10 +42,9 @@ if (name) {
   config.mixins[1] = `src/${name}/_*.styl`
 }
 
-
 // ----------------------------------------------------------
 
-function logError(error) {
+function logError (error) {
   $.util.log($.util.colors.bgRed(error.message))
   // this.emit('end')
 }
@@ -64,7 +67,7 @@ function logError(error) {
 
 // ----------------------------------------------------------
 
-const accordBuild = function() {
+const accordBuild = function () {
   return combine(
     $.sourcemaps.init(),
     $.accord('stylus', config.stylus).on('error', logError),
@@ -75,7 +78,6 @@ const accordBuild = function() {
   // .pipe($.sourcemaps.init)
   // .pipe($.accord, 'stylus', config.stylus)
   // .pipe($.sourcemaps.write)
-
 
 // ----------------------------------------------------------
 
@@ -109,7 +111,6 @@ gulp.task('stylus:all', () => {
     .pipe(gulp.dest(config.dest))
 })
 
-
 // ----------------------------------------------------------
 
 gulp.task('build', [ 'stylus:all' ])
@@ -117,7 +118,7 @@ gulp.task('build', [ 'stylus:all' ])
 // ----------------------------------------------------------
 
 gulp.task('watch', [ 'build' ], () => {
-  gulp.watch(config.src,    [ 'stylus' ])
+  gulp.watch(config.src, [ 'stylus' ])
   gulp.watch(config.mixins, [ 'stylus:all' ])
 })
 
