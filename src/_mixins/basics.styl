@@ -121,7 +121,7 @@ selection($color, $background)
 // ----------------------------------------------------------------------------
 
 base-core($text-font-family, $font-size = 14pt)
-  @require url(web-font($text-font-family))
+  @import url(get-web-font-url($text-font-family))
 
   html
     font-size: $font-size
@@ -157,6 +157,9 @@ base-core($text-font-family, $font-size = 14pt)
   samp
     font: normal inherit $monospace-font
     line-height: $line-height
+
+  pre
+    white-space pre-wrap
 
 
 // ----------------------------------------------------------------------------

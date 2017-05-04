@@ -45,3 +45,17 @@ domains($domains...)
 
   @-moz-document unquote($buf)
     {block}
+
+// ----------------------------------------------------------------------------
+
+get-web-font-url($name, $variants = '400,400i,700,700i')
+  $family = unquote(replace(' ', '+', $name))
+
+  if $variants is not false
+    if $variants is a 'string'
+      $variants = split(' ', $variants)
+
+    $family += ':' + join(',', $variants)
+
+  return 'https://fonts.googleapis.com/css?family=' + $family
+
