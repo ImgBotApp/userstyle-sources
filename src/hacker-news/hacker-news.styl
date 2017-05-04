@@ -14,7 +14,7 @@ $font-size = 14pt
 // ----------------------------------------------------------------------------
 
 fs($size = 1rem)
-  font $size/1.44em Roboto, Arial, sans-serif
+  font $size/1.44em 'Merriweather Sans', Arial, sans-serif
   // font-family 'Roboto Slab', Arial, sans-serif
   // font-size $size
   // line-height 1.44em
@@ -29,7 +29,7 @@ fade-in($duration = 0.2s)
 
 // ----------------------------------------------------------------------------
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700')
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700')
 
 html
 body
@@ -48,6 +48,17 @@ body
 .comment
   fs()
 
+#hnmain
+  background-color transparent !important
+
+.comtr > td > table
+  width 100%
+  table-layout auto
+
+
+for $w in range(40, 400, 40)
+  .ind img[width = {'"%s"' % $w}]
+    width unit($w / 2, 'px') !important
 
 .comhead
   a.hnuser
@@ -62,8 +73,17 @@ body
   .age a:hover
     text-decoration none
 
+  a.togg
+    letter-spacing 0.1em
+    color black
+
+    &:hover
+      text-decoration none
+      font-weight bold
+
 .default
   position relative
+  width 100%
 
   > :first-child
     margin-top 0 !important
@@ -90,6 +110,11 @@ body
 
       fade-in()
       transition: transform 0.2s ease-in-out
+
+      visibility hidden
+
+      / .comtr > td > table:hover &
+        visibility visible
 
       &:hover
         transform: scale3d(1.1, 1.1, 1)
