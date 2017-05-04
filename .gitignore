@@ -6,7 +6,7 @@
 *.log
 
 # Compiled CSS
-css/
+# css/
 
 # Archived/out of date styles
 attic/
