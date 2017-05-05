@@ -1,0 +1,12 @@
+.popover {
+  min-height: 32px;
+}
+.popover-list {
+  max-height: 240px;
+}
+.popover-list-item {
+  height: 32px;
+  line-height: 32px;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9taXhjbG91ZC9taXhjbG91ZC5zdHlsIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBO0VBQ0UsWUFBWSxLQUFaOztBQUVGO0VBQ0UsWUFBWSxNQUFaOztBQUVGO0VBQ0UsUUFBUSxLQUFSO0VBQ0EsYUFBYSxLQUFiIiwiZmlsZSI6Im1peGNsb3VkL21peGNsb3VkLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuJHBvcG92ZXItbGluZS1oZWlnaHQgPSAzMnB4XG5cbi5wb3BvdmVyXG4gIG1pbi1oZWlnaHQ6ICRwb3BvdmVyLWxpbmUtaGVpZ2h0XG5cbi5wb3BvdmVyLWxpc3RcbiAgbWF4LWhlaWdodDogMjQwcHhcblxuLnBvcG92ZXItbGlzdC1pdGVtXG4gIGhlaWdodDogJHBvcG92ZXItbGluZS1oZWlnaHRcbiAgbGluZS1oZWlnaHQ6ICRwb3BvdmVyLWxpbmUtaGVpZ2h0XG4iXX0= */
