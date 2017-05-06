@@ -21,34 +21,163 @@ a,
 a:visited
   color #c50 !important
 
+.submit_button
+.primary_button
+.PrizeChooseWinnerButton
+  color white !important
+
+.threaded_comments
+  .more_button
+    color inherit !important
+
+  .comment_replies_show_child_link
+    color #999 !important
+
 // ----------------------------------------------------------------------------
 
 .ContentWrapper
-  width 80vw !important
+  width 80vw
 
-.grid_page
-.grid_page_wrap
-  display flex
+  .grid_page
+    margin 0
+    display flex
+    flex-flow row nowrap
+    justify-content space-between
+    align-items stretch
 
-.grid_page
-.grid_page_left_col
-  margin-left 0 !important
+    .layout_3col_right
+      display none
 
-.grid_page_wrap
-.grid_page_left_col
-.grid_page_centre_col
-.grid_page_right_col
-  float none !important
-  width auto !important
+    .layout_3col_left
+    .layout_3col_center
+    .layout_3col_right
+      float none
+      clear none
+      width auto
+      margin 0 10px
 
-.grid_page_wrap
-  flex 1 1 auto
+    .layout_3col_left
+      flex 0 0 200px
 
-.grid_page_right_col
-  flex 0 1 240px
+      .NavList
+        width auto
 
-.grid_page_left_col
-  flex 0 1 145px
+    .layout_3col_center
+      flex 1 1 auto
 
-.grid_page_center_col
-  flex 1 1 auto
+    .layout_3col_right
+      flex 0 0 228px
+
+
+// .grid_page
+// .grid_page_wrap
+//   display flex
+
+// .grid_page
+// .grid_page_left_col
+//   margin-left 0 !important
+
+// .grid_page_wrap
+// .grid_page_left_col
+// .grid_page_centre_col
+// .grid_page_right_col
+//   float none !important
+//   width auto !important
+
+// .grid_page_wrap
+//   flex 1 1 auto
+
+// .grid_page_right_col
+//   flex 0 1 240px
+
+// .grid_page_left_col
+//   flex 0 1 145px
+
+// .grid_page_center_col
+//   flex 1 1 auto
+
+
+// ----------------------------------------------------------------------------
+
+.layout_3col_center
+  width 60vw
+
+.feed_desktop_modal_skinny_off .modal_overlay.feed_desktop_modal
+  .modal_wrapper
+    width 80vw
+
+    .modal_content
+      width calc(80vw - 172px)
+
+  .modal_fixed_close
+    margin-left calc(40vw + 10px)
+
+
+// ----------------------------------------------------------------------------
+
+// $answer-text-size = 17px
+// $comment-text-size = 15px
+// $action-text-size = 14px
+
+$answer-text-size = 18px
+$comment-text-size = 16px
+$action-text-size = 14px
+
+
+.modal_overlay.feed_desktop_modal .modal_wrapper
+  .EventHeader
+    &
+    & a
+      font-size $action-text-size
+
+  .ExpandedAnswer
+    font-size $answer-text-size
+
+
+.CredibilitySection
+.CredibilityFacts
+.ActionBar
+.ContentFooter
+  font-size $action-text-size
+
+
+.threaded_comments
+  font-size $comment-text-size
+
+  .comment_list .comment_wrapper .comment_highlight_wrapper
+    .comment_contents .full_comment_text
+      .TruncatedAnswerComment
+      .ExpandedAnswerComment
+      .full_text
+      .rendered_qtext
+      .inline_editor_value
+      .inline_editor_edit
+        font-size inherit
+
+      .comment_author_name
+        .user
+        .anon_user
+        .IdentityNameCredential
+          font-size inherit
+
+    .comment_delete_link_wrapper a
+      transform scale3d(1.25, 1.25, 1)
+
+  .comment_replies_show_child_link
+    .light
+    .user
+    .IdentityNameCredential
+      font-size inherit
+
+  .reply_to_comment
+  .add_root_comment
+  .threaded_inline_editor
+    .editor_wrapper .Comment.Editor
+      font-size inherit
+
+
+.AnswerPageViewMoreLink
+.multifeed_header .modal_related_answers .view_more
+  .view_more_link
+    font-size $comment-text-size
+
