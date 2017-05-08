@@ -7,7 +7,8 @@ $reply-background-colour = #5af
 $comment-head-underline-colour = #888
 
 $title-size = 15pt
-$font-size = 13pt
+$font-size  = 13pt
+$input-size = 12pt
 
 // ----------------------------------------------------------------------------
 
@@ -50,6 +51,24 @@ body
 .comment
   font $font-size/1.44em 'Merriweather Sans', Arial, sans-serif
 
+.profileform
+  td
+    font $font-size/1.44em 'Merriweather Sans', Arial, sans-serif
+    padding 0.2em 0.5em
+
+  input
+  select
+  textarea
+    font $input-size/1.44em 'Merriweather Sans', Arial, sans-serif
+    padding 0.1em 0.25em
+
+  a
+    color $link-colour !important
+    text-decoration none !important
+    // font-weight bold
+    fade-in()
+
+
 #hnmain
   background-color transparent !important
   width 80vw !important
@@ -78,13 +97,13 @@ for $w in range(40, 400, 40)
     width unit($w / 2, 'px') !important
 
 
-.comhead
-  a.hnuser
-    color $link-colour !important
-    font-weight bold
-    text-decoration none !important
-    fade-in()
+a.hnuser
+  color $link-colour !important
+  text-decoration none !important
+  font-weight bold
+  fade-in()
 
+.comhead
     // font
     //   relative left -1.25em
 
