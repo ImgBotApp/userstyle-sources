@@ -111,16 +111,19 @@
 .pl-v
   syntax $code-constants
 
+
 /* Built-ins */
 .pl-c1
 .pun
   syntax $code-builtins !important
+
 
 /* Regexp, CSS tag name */
 .pl-sr
 .pl-sr *
   syntax $code-regexp
   // color deeppink !important
+
 
 /* HTML tags */
 .pl-e
@@ -129,12 +132,21 @@
   syntax $code-tag !important
   // color violet !important
 
+
+/* Markdown */
+.pl-mb
+  syntax $code-text bold
+.pl-mi
+  syntax $code-text italic
+
+
 /* Properties? */
 .pl-smi
 .typ
   syntax darkorange italic
   // color darkorange
   // font-style italic
+
 
 /* Punctuation */
 .pl-s .pl-pds
@@ -143,6 +155,7 @@
 .x
   syntax $code-punctuation
 
+
 /* Strings and quotes */
 .pl-s
 .str
@@ -150,6 +163,7 @@
   syntax $code-string !important
   // color turquoise !important
   // font-style italic !important
+
 
 for l in css scss stylus
   .type-{l}
