@@ -1,10 +1,13 @@
 
-$link-colour = #37f
-$link-visited-colour = #c60
-$comment-link-colour = #5a5aa0
+$text-colour                    = #121314
 
-$reply-background-colour = #5af
-$comment-head-underline-colour = #888
+$link-colour                    = #37f
+$link-visited-colour            = #c60
+$comment-link-colour            = #5a5aa0
+
+$reply-background-colour        = #5af
+$comment-head-underline-colour  = #888
+
 
 $title-size = 15pt
 $font-size  = 13pt
@@ -155,8 +158,8 @@ a.hnuser
 
 
 .title
-  > a:visited
-    color shade($link-visited-colour, 30%)
+  > a
+    link-colour($text-colour, shade($link-visited-colour, 30%))
 
 .subtext
   > a:last-child
@@ -167,7 +170,7 @@ a.hnuser
   padding 0.25rem 0
 
   .c00
-    color #121314 !important
+    color $text-colour !important
 
   .cce
   .c73
