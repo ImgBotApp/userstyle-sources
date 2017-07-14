@@ -5,6 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
+    "gh": "gulp -s github",
+    "hn": "gulp -s hacker-news",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
