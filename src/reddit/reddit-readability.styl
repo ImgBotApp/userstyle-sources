@@ -35,6 +35,9 @@ $focus-item-highlight-colour = $link-underline-colour
 $comment-pad = 6px
 $textarea-pad = 0.4em
 
+// The popout left-sidebar for picking your multi-reddits (originally 130px)
+$listing-chooser-width = 200px
+
 
 // ----------------------------------------------------------------------------
 
@@ -120,6 +123,15 @@ a
   overflow-x: hidden
   position: relative
   z-index: 2
+
+
+body.with-listing-chooser
+  .listing-chooser
+    width $listing-chooser-width
+
+  & > .content
+  .footer-parent
+    margin-left ($listing-chooser-width + 18px)
 
 
 // ----------------------------------------------------------------------------
