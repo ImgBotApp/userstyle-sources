@@ -35,6 +35,9 @@ $focus-item-highlight-colour = $link-underline-colour
 $comment-pad = 6px
 $textarea-pad = 0.4em
 
+// The popout left-sidebar for picking your multi-reddits (originally 130px)
+$listing-chooser-width = 200px
+
 
 // ----------------------------------------------------------------------------
 
@@ -124,6 +127,15 @@ a
   right: -300px
 
 
+body.with-listing-chooser
+  .listing-chooser
+    width $listing-chooser-width
+
+  & > .content
+  .footer-parent
+    margin-left ($listing-chooser-width + 18px)
+
+
 // ----------------------------------------------------------------------------
 // --- Items ---
 
@@ -211,7 +223,7 @@ a
       padding-right: 0.5em
       line-height: 2.4em
 
-      +below(3)
+      +not-desktop()
         float: none
         padding-right: 0px
 
