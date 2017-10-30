@@ -155,7 +155,7 @@ a
 
   .flat-list li a
   a.give-gold
-    color: desaturate($link-colour, 50%) !important
+    color: desaturate($link-colour, 50%)
     font-size: inherit
 
     &:after
@@ -206,6 +206,37 @@ a
     &.RES-keyNav-activeElement
       border-bottom-color: $focus-item-highlight-colour
 
+    .flat-list
+      float: right
+      padding-right: 0.5em
+      line-height: 2.4em
+
+      +below(3)
+        float: none
+        padding-right: 0px
+
+      a.comments
+        color: white !important
+        background-color: $button-colour
+        // border: solid 2px $button-colour
+        border-radius: 4px !important
+        padding: 4px 6px 4px !important
+
+        .newComments
+          color: $new-comments-link-colour
+          font-style: italic
+
+        &:hover
+          background-color: darken($button-colour, 50%) !important
+          text-decoration: none
+
+        &:visited
+          background-color: $button-visited-colour !important
+
+          &:hover
+            background-color: darken($button-visited-colour, 50%) !important
+
+
   .thumbnail
   .midcol
     margin-top: 5px !important
@@ -225,36 +256,6 @@ a
 
     &:empty
       display: none
-
-  .flat-list
-    float: right
-    padding-right: 0.5em
-    line-height: 2.4em
-
-    +below(3)
-      float: none
-      padding-right: 0px
-
-    a.comments
-      color: white !important
-      background-color: $button-colour !important
-      // border: solid 2px $button-colour
-      border-radius: 4px !important
-      padding: 4px 6px 4px !important
-
-      .newComments
-        color: $new-comments-link-colour
-        font-style: italic
-
-      &:hover
-        background-color: darken($button-colour, 50%) !important
-        text-decoration: none
-
-      &:visited
-        background-color: $button-visited-colour !important
-
-        &:hover
-          background-color: darken($button-visited-colour, 50%) !important
 
 
   .usertext-body
