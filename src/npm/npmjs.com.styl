@@ -7,10 +7,10 @@
 
 // ----------------------------------------------------------------------------
 
-$text-colour = #222
+$text-colour = #121314
 $code-colour = #ff8
-$link-colour = #05f
-$link-visited-colour = #b48
+$link-colour = #37f
+$link-visited-colour = #c39
 
 
 // ----------------------------------------------------------------------------
@@ -70,6 +70,14 @@ body
   h1
     a
       color $link-colour !important
+
+
+// ----------------------------------------------------------------------------
+// Misc.
+
+.markdown
+  li
+    padding 0.1em 0
 
 
 // ----------------------------------------------------------------------------
@@ -139,7 +147,7 @@ pre
   color #eee
 
   .comment
-    color #009e60
+    color #00dd99
 
   .variable
     &.function
@@ -154,6 +162,9 @@ pre
   .keyword
   .storage
     color #fdfd96
+
+    &.type + span
+      color #ddd
 
   .keyword.operator
   .meta.brace
@@ -177,4 +188,20 @@ pre
   // E.g. ${ and } in ES6 template strings
   .string .punctuation.section.embedded
     color #4dd
+    font-weight inherit
+
+  .punctuation.definition
+    color #eee
+
+  .meta.tag
+  .entity.name.tag
+  .punctuation.definition.tag
+    color #7af
+
+  .entity.other.attribute-name
+    color #fdfd96
+    font-weight inherit
+
+  .string.unquoted.html
+    color #f77fbe
 
