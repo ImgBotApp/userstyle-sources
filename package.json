@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
+    "build": "gulp build",
     "gh": "gulp -s github",
     "hn": "gulp -s hacker-news",
     "npm": "gulp -s npm",
